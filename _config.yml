@@ -34,6 +34,10 @@ header_pages:
 # Set to `true` to show excerpts on the homepage.
 #show_excerpts: false
 
+# jekyll-assets 插件可以帮助你合并和压缩 JavaScript 文件，以优化加载时间
+assets:
+  js_compressor: uglifier
+
 # Minima specific settings, which are only available from Minima 3.0 onward.
 minima:
   # Minima skin selection.
