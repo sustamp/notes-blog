@@ -67,7 +67,7 @@ GitHub个人站点将为你提供免费域名以供访问。域名格式为：`h
 ```
 remote_theme: pages-themes/cayman@v0.2.0 #这里选择你要使用的远程主题
 plugins:
-- jekyll-remote-theme # add this line to the plugins list if you already have one
+- jekyll-remote-theme # 使用远程主题需要引入这个插件
 title: Sustamp学习笔记
 description: #这里输入你的主页描述
 #baseUrl是定义基础路径，个人站点默认是"/"，项目站点则需要在这里设置"/仓库名"。
@@ -89,12 +89,12 @@ title: 你的主页标题 #输入你的页面标题
 ---
 ```
 
->jekyll是用上、下的3个分隔符号`---`作为主题设置区域。
+>jekyll是量行3个分隔符号`---`作为虚线，是**YAML**头信息的识别区域。头信息必须在文件的开始部分，并且需要按照 YAML 的格式写在两行三虚线之间。任何只要包含 YAML 头信息的文件在 Jekyll 中都能被当做一个特殊的文件来处理
 
 ### 3. 定制布局。  
 在上述第2点我们引用了`layout: defalut`的布局。这其实是使用的是`_layout`目录下的`default.html`文件。
 
-现在我们创建_layout目录并新建default.html。在仓库新建文件，输入`/_layout/default.html`，这回同时创建目录`_layout`，并新增`default.html`文件，文件内容如下：
+现在我们创建_layout目录并新建default.html。在仓库新建文件，输入`/_layout/default.html`，这会同时创建目录`_layout`，并新增`default.html`文件，文件内容如下：
 
 ```
 <!DOCTYPE html>
@@ -102,7 +102,7 @@ title: 你的主页标题 #输入你的页面标题
   <head>
     <meta charset="UTF-8">
 
-{% seo %}
+<!-- {% seo %} -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -183,7 +183,7 @@ layout: default
 
 jeykll要求将博客文章放置在`_posts`目录下，目录下的文章文件默认要求`yyyy-MM-dd-title.md`格式命名。
 
-在仓库继续新增文件，输入`/_posts/2024-10-31-my-first-post.md`，就可以创建_posts目录，同时创建了一个2024-10-31-my-first-post.md文件，它将是我们的第一篇博客文章。文章内容可随便填写，但主题区域需要一些基本设置：
+在目标仓库继续新增文件，输入`/_posts/2024-10-31-my-first-post.md`，就可以创建_posts目录，同时创建了一个2024-10-31-my-first-post.md文件，它将是我们的第一篇博客文章。文章内容可随便填写，但主题区域需要一些基本设置：
 
 ```
 ---
