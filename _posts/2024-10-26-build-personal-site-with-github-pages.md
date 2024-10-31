@@ -1,0 +1,226 @@
+---
+layout: post
+title: 利用github pages构建个人网站
+---
+
+目录：
+- [1.创建仓库](#1创建仓库)
+- [2.启用Github pages](#2启用github-pages)
+- [2.定制主题](#2定制主题)
+  - [2. 在仓库根目录下新建一个\_config.yml文件。](#2-在仓库根目录下新建一个_configyml文件)
+  - [2. 编写index.md文件，编写主页内容。](#2-编写indexmd文件编写主页内容)
+  - [3. 定制布局。](#3-定制布局)
+- [3.编写博客文章](#3编写博客文章)
+  - [1. 创建博客目录\_posts。](#1-创建博客目录_posts)
+  - [2. 主页显示文章](#2-主页显示文章)
+
+
+本文介绍如何使用GitHub创建个人的网站或博客。在此之前，请确保你已经拥有一个github账号，否则请访问<a href="https://github.com/" target="_blank">GitHub</a>注册一个账号。
+
+**Tips**  
+注册账号时请为你填写一个**好看**的用户名，因为它将是你在GitHub上使用众多功能时的链接凭证。请尽量不要胡乱输入一个用户名。
+
+## 1.创建仓库
+
+GitHub有**个人站点**[user]和**项目站点**[project]的之分。
+
+GitHub个人站点将为你提供免费域名以供访问。域名格式为：`https://[username].github.io`。其中`username`就是你的用户名，域名格式在Github上是固定的，它将是你的个人主页地址。如果你自己购买了域名，也可以用自己购买的域名与这个地址映射。
+
+接下来我们来创建仓库，这里建议尽量创建**公共**仓库(Public)，因为私有仓库(Private)在 GitHub Action有免费额度限制。
+
+1. 登录GitHub后，点击右上角的"+"号按钮创建一个新的仓库"New repository"。  
+   - 若将仓库名"Repository Name"命名为：`[username].github.io`，确认创建后你的**个人站点**就创建成功了。访问地址：https://[username].github.io。  
+   - 若仓库名命名不是`[username].github.io`的格式，比如你命名成`HelloGit`，则在GitHub上创建一个名为"HelloGit"的**项目仓库**，同时它也将是你的**项目站点**。访问地址：https://[username].github.io/[repositoryname]  
+   
+观察上面的2个访问地址，可以发现项目站点的访问地址只是在个人站点链接后增加"/仓库名"拼接的。
+
+那么接下来都将以个人站点的仓库作为后续内容的讲述标本。
+
+2. 创建主页文件index.html  
+   我们可以在仓库新建一个文件Create new file，命名为：index.html，这是主页文件。文件内容可以随便填写，比如"Hello world!"，然后点击提交。此时我们在浏览器访问个人站点或项目站点就可以看到这个页面上的内容了。
+   站点地址默认会读index.html/index.md/README.md等文件的内容。
+
+## 2.启用Github pages
+
+- 点击仓库的**Settings**菜单进入配置页。
+- 选择左侧栏中**Code and automation**下的Pages进入GitHub Pages设置页。
+- 使用main分支部署。在**Build And Deplovment**中点击**Source**下拉框，选择"Deploy from a branch"，Branch 选择 main。
+- 点击Save保存。
+  
+<img src="/notes/assets/pictures/GitHub-Settings-1.png" />
+
+你也可以选择**其它分支**进行部署，这要求你提前新建好分支。比如新建一个`gh-pages`分支。
+
+**GitHub Actions** 是另外一个可选的部署方式。它可以进行代码的同步和部署，如果你使用GitHub Actions，可以配置触发条件和部署信息。当条件触发时，提交的代码会同步到分支上，然后在分支进行站点的部署和发布。
+
+>启用Github Pages会创建仓库的部署。在等待部署期间，GitHub Actions可能需要长达一分钟的时间才能响应，需要耐心等待。  
+注意：在Pages设置的顶部，会出现你的网站链接，复制链接或者点击"Visit Site"按钮可以访问你的GitHub Pages站点。
+
+
+## 2.定制主题
+
+这里使用GitHub Pages推荐的jekyll主题来定制个人网站的风格。
+
+### 2. 在仓库根目录下新建一个_config.yml文件。  
+在仓库**Code**菜单中添加一个文件Add file -> Create new file，上方填写文件名`_config.yml`，填写如下内容：
+
+```
+remote_theme: pages-themes/cayman@v0.2.0 #这里选择你要使用的远程主题
+plugins:
+- jekyll-remote-theme # add this line to the plugins list if you already have one
+title: Sustamp学习笔记
+description: #这里输入你的主页描述
+#baseUrl是定义基础路径，个人站点默认是"/"，项目站点则需要在这里设置"/仓库名"。
+#这会让基础地址定位成：https://username.github.io/[baseurl]，方便后续的资源访问。
+baseurl: "/"  #项目站点设置为"/仓库名"
+```
+
+Commit提交后保存。
+
+### 2. 编写index.md文件，编写主页内容。  
+我们之前创建了一个index.html文件，具备前端编程能力的开发者们可以在这里自己定义html内容打造自己专属的主页内容。  
+
+但这里我们用jekyll主题面向非开发者编写主页。将index.html改名为index.md。在原有内容的顶部增加如下代码:  
+   
+```
+---
+layout: defalut
+title: 你的主页标题 #输入你的页面标题
+---
+```
+
+>jekyll是用上、下的3个分隔符号`---`作为主题设置区域。
+
+### 3. 定制布局。  
+在上述第2点我们引用了`layout: defalut`的布局。这其实是使用的是`_layout`目录下的`default.html`文件。
+
+现在我们创建_layout目录并新建default.html。在仓库新建文件，输入`/_layout/default.html`，这回同时创建目录`_layout`，并新增`default.html`文件，文件内容如下：
+
+```
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    <meta charset="UTF-8">
+
+{% seo %}
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+    {% include head-custom.html %}
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
+      <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline }}</h2>
+      {% if site.github.is_project_page %}
+        <a href="{{ site.github.repository_url }}" class="btn">View on GitHub</a>
+      {% endif %}
+      {% if site.show_downloads %}
+        <a href="{{ site.github.zip_url }}" class="btn">Download .zip</a>
+        <a href="{{ site.github.tar_url }}" class="btn">Download .tar.gz</a>
+      {% endif %}
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      {{ content }}
+
+      <footer class="site-footer">
+        {% if site.github.is_project_page %}
+          <span class="site-footer-owner"><a href="{{ site.github.repository_url }}">{{ site.github.repository_name }}</a> is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a>.</span>
+        {% endif %}
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>
+```
+
+这是GitHub Pages **cayman**主题的html模板，直接复制填写即可。有关cayman主题的官方内容请访问：<a href="https://github.com/pages-themes/cayman" target="_blank">https://github.com/pages-themes/cayman</a>。
+
+**default.html**是布局模板中的一种，我们还可以定义page.html, post.html，home.html等页面模板。然后在md文件中选择使用哪种模板。
+
+为了后续的博客文章编写，我们在定义一个post.html模板。在`_layout`目录下继续新增一个`post.html`文件。内容如下：
+
+```
+---
+layout: default
+---
+<article itemscope itemtype="http://schema.org/BlogPosting">
+
+  <!-- <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">{{ page.title | escape }}</h1>
+    <p class="post-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+        {% assign date_format = site.cayman-blog.date_format | default: "%b %-d, %Y" %}
+        {{ page.date | date: date_format }}
+      </time>
+      {% if page.author %}
+        • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author }}</span></span>
+      {% endif %}</p>
+  </header> -->
+
+  <div itemprop="articleBody">
+    {{ content }}
+  </div>
+
+  {% if site.disqus.shortname %}
+    {% include disqus_comments.html %}
+  {% endif %}
+</article>
+```
+
+这模板会在之后的博客文章中用到。
+   
+
+## 3.编写博客文章
+
+### 1. 创建博客目录_posts。  
+
+jeykll要求将博客文章放置在`_posts`目录下，目录下的文章文件默认要求`yyyy-MM-dd-title.md`格式命名。
+
+在仓库继续新增文件，输入`/_posts/2024-10-31-my-first-post.md`，就可以创建_posts目录，同时创建了一个2024-10-31-my-first-post.md文件，它将是我们的第一篇博客文章。文章内容可随便填写，但主题区域需要一些基本设置：
+
+```
+---
+layout: post
+title: 我的第一篇博客 
+---
+
+填写你的文章正文内容
+
+```
+
+这里，布局使用的是post.html页面模板，title是对你的文章标题。文件提交保存后，其实就可以进行访问了。为了让文章在我们的主页显示出来，需要修改index.md文件。
+
+### 2. 主页显示文章
+
+调整我们的index.md内容，填写一代代码：
+
+```
+---
+layout: default
+title: 你的主页标题
+---
+
+Hello world！
+
+## 文章列表
+<ul>
+  {% for post in site.posts %}
+    <li>
+      <a href="{{ post.url }}">{{ post.title }}</a><span>    ({{ post.date | date_to_string }})    </span>
+    </li>
+  {% endfor %}
+</ul>
+```
+
+这样，jekyll就会遍历_posts目录，检索其下的文章内容，并显示在主页下，你就可以选择你的文章访问了。
+
+访问前关注一下仓库中**Actions**内容，查看部署进度，部署成功后，新的内容才会生成。
+
+
