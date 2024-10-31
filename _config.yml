@@ -21,6 +21,7 @@ theme: minima
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-table-of-contents # jekyll目录自动生成插件
   #- jekyll-remote-theme # 使用远程主题时需要增加这个插件
 
 # Theme-specific settings

@@ -1,19 +1,8 @@
 ---
 layout: post
 title: 利用github pages构建个人网站
+toc: true
 ---
-
-目录：
-- [1.创建仓库](#1创建仓库)
-- [2.启用Github pages](#2启用github-pages)
-- [2.定制主题](#2定制主题)
-  - [2. 在仓库根目录下新建一个\_config.yml文件。](#2-在仓库根目录下新建一个_configyml文件)
-  - [2. 编写index.md文件，编写主页内容。](#2-编写indexmd文件编写主页内容)
-  - [3. 定制布局。](#3-定制布局)
-- [3.编写博客文章](#3编写博客文章)
-  - [1. 创建博客目录\_posts。](#1-创建博客目录_posts)
-  - [2. 主页显示文章](#2-主页显示文章)
-
 
 本文介绍如何使用GitHub创建个人的网站或博客。在此之前，请确保你已经拥有一个github账号，否则请访问<a href="https://github.com/" target="_blank">GitHub</a>注册一个账号。
 

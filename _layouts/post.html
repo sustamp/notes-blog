@@ -29,12 +29,9 @@ layout: base
   <div class="post-content e-content" itemprop="articleBody">
     {{ content }}
   </div>
-  <div id="toc"></div>
-  <script src="/assets/js/toc.js" type="test/javascript">
-    $(document).ready(function() {
-      $(#toc").toc();
-    });
-  </script>
+  <div id="table-of-contents">
+    [[ content | toc ]]
+  </div>
 
   {%- if site.disqus.shortname -%}
     {%- include disqus_comments.html -%}
