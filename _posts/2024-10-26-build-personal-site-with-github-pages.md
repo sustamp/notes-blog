@@ -1,7 +1,6 @@
 ---
 layout: post
 title: 利用github pages构建个人网站
-toc: true
 ---
 
 本文介绍如何使用GitHub创建个人的网站或博客。在此之前，请确保你已经拥有一个github账号，否则请访问<a href="https://github.com/" target="_blank">GitHub</a>注册一个账号。
