@@ -23,6 +23,7 @@ remote_theme: jekyll/minima
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-remote-theme # 提示使用远程主题插件
 
 # Theme-specific settings
 
