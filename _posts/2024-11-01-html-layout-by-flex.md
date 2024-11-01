@@ -35,6 +35,8 @@ title: "使用Flexbox进行网页布局"
 
 HTML中使用 flexbox 的区域就叫做 **flex 容器**（flex container）。当我们把一个容器的 `display` 属性值改为 `flex` 或者 `inline-flex`就创建了 flex 容器。容器中的所有子元素自动成为容器成员，叫做 **flex 项目**（flex item）。
 
+为了方便说明，下面给出css和html的代码模板：
+
 ```css
 .box {
   display: flex;
@@ -43,14 +45,9 @@ HTML中使用 flexbox 的区域就叫做 **flex 容器**（flex container）。�
 
 ```html
 <div class="box">
-  <div>One</div>
-  <div>Two</div>
-  <div>
-    Three<br>
-    has<br>
-    extra<br>
-    text
-  </div>
+  <span class="item"></span>
+  <span class="item"></span>
+  <span class="item"></span>
 </div>
 ```
 
