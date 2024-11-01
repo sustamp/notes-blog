@@ -67,23 +67,12 @@ Flex 容器有两根轴线：
 ## 容器的属性
 容器有以下6个属性：
 
-flex-direction
-: 主轴延伸方向，即项目的排列方向。
-
-flex-wrap
-: 换行方式
-
-flex-flow
-: flex-direction 和 flex-wrap 的组合。
-
-justify-content
-: 定义了项目在主轴上的对齐方式。
-
-align-items
-: 定义了项目在交叉轴上的对齐方式。
-
-align-content
-: 定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。
+- `flex-direction` 主轴延伸方向，即项目的排列方向。
+- `flex-wrap` 换行方式
+- `flex-flow` 是 flex-direction 和 flex-wrap 的简写，默认值为 `row nowrap`。
+- `justify-content` 定义项目在主轴上的对齐方式
+- `align-items` 定义项目在交叉轴上的如何对齐
+- `align-content` 当项目有多根轴线时定义对齐方式，只有一根轴线时不起作用。
 
 
 ### 1. flex-direction 

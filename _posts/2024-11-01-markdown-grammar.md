@@ -311,15 +311,13 @@ HTML代码像这样：
 </dl>
 ```
 
-显示效果:
+显示效果：  
+***First Tem***
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This is the definition of the first term.
 
-<dl>
-  <dt>First Term</dt>
-    <dd>This is the definition of the first term.</dd>
-  <dt>Second Term</dt>
-    <dd>This is one definition of the second term. </dd>
-    <dd>This is another definition of the second term.</dd>
-</dl>
+***Second Term***
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This is one definition of the second term.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This is another definition of the second term.
 
 ---
 ## 参考资料
