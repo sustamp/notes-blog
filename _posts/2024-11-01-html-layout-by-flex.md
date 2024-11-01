@@ -178,13 +178,13 @@ flex-wrap的枚举如下：
 
 
 ## 项目的属性
-项目也有6个属性：
-- **order**
-- flex-grow
-- flex-shrink
-- flex-basis
-- flex
-- align-self
+容器中的 Flex项目 也有6个属性：
+- `order`
+- `flex-grow`
+- `flex-shrink`
+- `flex-basis`
+- `flex`
+- `align-self`
 
 
 

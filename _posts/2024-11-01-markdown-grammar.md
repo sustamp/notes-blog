@@ -312,10 +312,10 @@ HTML代码像这样：
 ```
 
 显示效果：  
-***First Tem***
+***First Tem***  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This is the definition of the first term.
 
-***Second Term***
+***Second Term***  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This is one definition of the second term.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This is another definition of the second term.
 
