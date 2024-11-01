@@ -28,12 +28,12 @@ title: "使用Flexbox进行网页布局"
   - [5. align-items](#5-align-items)
   - [6. align-content](#6-align-content)
 - [项目的属性](#项目的属性)
-- [参考资料](#参考资料)
+- [资料引用](#资料引用)
 
 
 ## Flex容器
 
-HTML中使用 flexbox 的区域就叫做 **flex 容器**。当我们把一个容器的 `display` 属性值改为 `flex` 或者 `inline-flex`就创建了 flex 容器。容器中的所有子元素自动成为容器成员，叫做 **flex 项目**。
+HTML中使用 flexbox 的区域就叫做 **flex 容器**（flex container）。当我们把一个容器的 `display` 属性值改为 `flex` 或者 `inline-flex`就创建了 flex 容器。容器中的所有子元素自动成为容器成员，叫做 **flex 项目**（flex item）。
 
 ```css
 .box {
@@ -179,17 +179,30 @@ flex-wrap的枚举如下：
 
 ## 项目的属性
 容器中的 Flex项目 也有6个属性：
-- `order`
-- `flex-grow`
-- `flex-shrink`
-- `flex-basis`
-- `flex`
-- `align-self`
+
+```css
+.item{
+    /* order定义项目的排列顺序 默认为0，数值越小，排列越靠前*/
+    order: 0;
+    /* flex-grow属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大 */
+    /* 如果所有项目的flex-grow属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的flex-grow属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍 */
+    flex-grow: 0;
+    /* flex-shrink定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小 */
+    /* 如果一个项目的flex-shrink属性为0，其他项目都为1，则空间不足时，前者不缩小。 */
+    flex-shrink: 1;
+    /* flex-basis属性定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小。 */
+    flex-basis: auto;
+    /* flex属性是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。 */
+    flex: 0 1 auto;
+    /* align-self属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch */
+    /* 该属性可能取6个值，除了auto，其他都与align-items属性完全一致。 */
+    align-self: auto;
+}
+```
 
 
 
-
-## 参考资料
+## 资料引用
 
 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox">flex 布局的基本概念</a>
 
