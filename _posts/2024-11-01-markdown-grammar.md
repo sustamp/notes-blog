@@ -76,7 +76,7 @@ _________________
 
 Markdown同时支持html标签，可以直接使用html的`<br>`标签。
 
-**总结**
+**总结**  
 为了兼容性，请在行尾添加“结尾空格”或 HTML 的 <br> 标签来实现换行。
 
 ---
@@ -181,10 +181,7 @@ Markdown基本语法允许您通过将行缩进四个空格或一个制表符来
 }
 ```
 
-##
-
----
-## Markdown代码块支持的语言列表
+#### Markdown代码块支持的语言列表
 
 |语言|关键字|调用的js|说明|
 |----|----|----|----|
@@ -256,7 +253,6 @@ Markdown基本语法允许您通过将行缩进四个空格或一个制表符来
 
 
 ### 多个段落的引用
-
 块引用可以包含多个段落。为段落之间的空白行添加一个 > 符号。
 
 ```
@@ -266,7 +262,6 @@ Markdown基本语法允许您通过将行缩进四个空格或一个制表符来
 ```
 
 ### 嵌套块引用
-
 块引用可以嵌套。在要嵌套的段落前添加一个 `>>` 符号。从嵌套块出来，则在段落结束后空一行再添加 `>>` 符号。
 
 ```
@@ -285,6 +280,45 @@ Markdown基本语法允许您通过将行缩进四个空格或一个制表符来
 > somethingnew
 
 ### 带有其他元素的快引用
+块引用可以包含其他 Markdown 格式的元素。并非所有元素都可以使用，你需要进行实验以查看哪些元素有效。
+
+
+---
+## 定义列表
+一些Markdown处理器允许您创建术语及其对应定义的定义列表。要创建定义列表，请在第一行上键入术语。在下一行，键入一个冒号，后跟一个空格和定义。
+
+markdown语法：
+
+```
+First Term
+: This is the definition of the first term.
+
+Second Term
+: This is one definition of the second term.
+: This is another definition of the second term.
+```
+
+
+HTML代码像这样：
+
+```html
+<dl>
+  <dt>First Term</dt>
+  <dd>This is the definition of the first term.</dd>
+  <dt>Second Term</dt>
+  <dd>This is one definition of the second term. </dd>
+  <dd>This is another definition of the second term.</dd>
+</dl>
+```
+
+显示效果:
+
+First Term
+: This is the definition of the first term.
+
+Second Term
+: This is one definition of the second term.
+: This is another definition of the second term.
 
 ---
 ## 参考资料

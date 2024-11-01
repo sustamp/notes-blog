@@ -18,9 +18,22 @@ title: "使用Flexbox进行网页布局"
 
 本文介绍如何使用Flex进行网页布局。
 
+本文目录:
+- [Flex容器](#flex容器)
+- [容器的属性](#容器的属性)
+  - [1. flex-direction](#1-flex-direction)
+  - [2. flex-wrap](#2-flex-wrap)
+  - [3. flex-flow](#3-flex-flow)
+  - [4. justify-content](#4-justify-content)
+  - [5. align-items](#5-align-items)
+  - [6. align-content](#6-align-content)
+- [项目的属性](#项目的属性)
+- [参考资料](#参考资料)
+
+
 ## Flex容器
 
-HTML中使用 flexbox 的区域就叫做 **flex 容器**。当我们把一个容器的 `display` 属性值改为 `flex` 或者 `inline-flex`就创建了 flex 容器。容器中的直系子元素就会变为 **flex 元素**。
+HTML中使用 flexbox 的区域就叫做 **flex 容器**。当我们把一个容器的 `display` 属性值改为 `flex` 或者 `inline-flex`就创建了 flex 容器。容器中的所有子元素自动成为容器成员，叫做 **flex 项目**。
 
 ```css
 .box {
@@ -43,9 +56,153 @@ HTML中使用 flexbox 的区域就叫做 **flex 容器**。当我们把一个容
 
 *注意，设为 Flex 布局以后，子元素的float、clear和vertical-align属性将失效。*
 
+Flex 容器有两根轴线：
+- 水平的主轴（main axis）
+- 垂直的交叉轴（cross axis）
+
+主轴的起始位置叫起始线，结束位置叫终止线。
+
+主轴由 `flex-direction` 定义，表示main axis的延伸方向，cross axis一直垂直于main axis，故它的延伸方向因 `flex-direction` 的取值不同而不同。我们接下来在说容器的属性时会再次涉及。
+
+## 容器的属性
+容器有以下6个属性：
+
+flex-direction
+: 主轴延伸方向，即项目的排列方向。
+
+flex-wrap
+: 换行方式
+
+flex-flow
+: flex-direction 和 flex-wrap 的组合。
+
+justify-content
+: 定义了项目在主轴上的对齐方式。
+
+align-items
+: 定义了项目在交叉轴上的对齐方式。
+
+align-content
+: 定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。
+
+
+### 1. flex-direction 
+当你设定：
+
+```css
+.box{
+    flex-direction: row;
+}
+```
+
+你的主轴将沿着**水平方向**延伸，此时交叉轴的方向是沿着**上下方向**延伸的。若设定 `flex-direction: column` 时，主轴会沿着页面的上下方向延伸，而交叉轴就变成了水平方向延伸。
+
+flex-direction 有4个值：  
+
+>- row: 默认值。主轴为水平方向，起点在左端。
+>- row-reverse: 主轴为水平方向，起点在右端。
+>- column: 主轴为垂直方向，起点在顶部。
+>- column-reverse: 主轴为垂直方向，起点在底部。
+
+
+### 2. flex-wrap
+默认情况下，项目都排在一条线上。如果一条线排布下，就由 `flex-wrap` 决定如何换行。
+
+```css
+.box{
+    flex-wrap: wrap | nowrap | wrap-reverse;
+}
+```
+
+flex-wrap的枚举如下：
+
+>- wrap: 换行，第一行在上方。
+>- wrap-reverse: 换行，第一行在下方。
+>- nowrap: 不换行。
+
+
+### 3. flex-flow
+将两个属性 `flex-direction` 和 `flex-wrap` 组合为简写属性 `flex-flow`。 第一个值指定 `flex-direction`，第二个值指定 `flex-wrap`。
+
+```css
+.box{
+    flex-flow: row wrap;
+}
+```
+
+### 4. justify-content
+`justify-content` 属性定义了项目在主轴上的对齐方式。具体对齐方式与**主轴的方向**有关。
+
+```css
+.box {
+  flex-direction: row;
+  justify-content: flex-start | flex-end | center | space-between | space-around;
+}
+```
+
+它有5个取值。假设 `flex-direction: row` ，主轴为从左往右：
+
+> - flex-start: 默认值，左对齐。
+> - flex-end: 右对齐。
+> - center: 居中。
+> - space-between: 两端对齐，项目之间的间隔都相等。
+> - space-around: 每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。
+
+
+### 5. align-items
+`align-items` 属性定义了项目在交叉轴上如何对齐。具体对齐方式与**交叉轴的方**向有关。
+
+```css
+.box {
+  flex-direction: row;
+  align-items: flex-start | flex-end | center | baseline | stretch;
+}
+```
+
+它有5个取值。假设 `flex-direction: row` ，主轴为从左往右，此时交叉轴便是从上往下：
+
+> - stretch: 默认值，若项目未设置高度或设置auto，将占满整个容器的高度。
+> - flex-start: 与交叉轴的起点对齐。
+> - flex-end: 与交叉轴的终点对齐。
+> - center: 与交叉轴的中点对齐。
+> - baseline: 项目的第一行文字的基线对齐。
+
+
+### 6. align-content
+`align-content` 属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。
+
+```css
+.box {
+  align-content: flex-start | flex-end | center | space-between | space-around | stretch;
+}
+```
+
+它有6个取值：
+
+> - flex-start: 与交叉轴的起点对齐。
+> - flex-end: 与交叉轴的终点对齐。
+> - center: 与交叉轴的中点对齐。
+> - space-between: 与交叉轴两端对齐，轴线之间的间隔平均分布。
+> - space-aroud: 每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。
+> - stretch(默认值): 轴线占满整个交叉轴。
+
+
+
+## 项目的属性
+项目也有6个属性：
+- **order**
+- flex-grow
+- flex-shrink
+- flex-basis
+- flex
+- align-self
+
+
+
 
 ## 参考资料
 
 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox">flex 布局的基本概念</a>
+
 <a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html">阮一峰的网络日志 - Flex 布局教程：语法篇</a>
 
