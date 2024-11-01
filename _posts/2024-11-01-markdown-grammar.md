@@ -3,11 +3,15 @@ layout: post
 title: "Markdown语法"
 ---
 
+本文记录一些自己常用的markdown语法。
+
+---
 ## 标题语法
 
 使用`# 标题`方式创建标题。#后面跟一个空格，然后是标题文本。
 有几个'#'就表示是几级标题。
 
+---
 ## 段落语法
 
 使用空白行将一行或多行文本进行分隔。
@@ -41,6 +45,20 @@ title: "Markdown语法"
     </tbody>
 </table>
 
+---
+## 分割线语法
+
+要创建分隔线，请在单独一行上使用三个或多个星号 (***)、破折号 (---) 或下划线 (___) ，并且不能包含其他内容。
+
+```
+***
+
+---
+
+_________________
+```
+
+---
 ## 强调语法
 
 `*斜体*`，表示*斜体*。
@@ -51,6 +69,66 @@ title: "Markdown语法"
 
 `~~删除线~~`，表示~~删除线~~。
 
+---
+## 换行语法
+
+最一行的末尾添加两个或多个空格，然后按回车键，即可创建一个换行`<br>`。这种叫`结尾空格(trailing whitespace)`的换行手法是有争议的，因为很难在编辑器中直接看到空格。
+
+Markdown同时支持html标签，可以直接使用html的`<br>`标签。
+
+**总结**
+为了兼容性，请在行尾添加“结尾空格”或 HTML 的 <br> 标签来实现换行。
+
+---
+## 列表语法
+
+### 无序列表
+
+### 有序列表
+
+---
+## 链接语法
+
+markdown超链接语法代码：  
+`[超链接显示名](超链接地址 "超链接title")`。*注意空格位置*。
+
+但我比较喜欢用html标签：  
+`<a href="超链接地址" title="超链接title" target="_blank">超链接显示名</a>`。
+
+### 网址或Email
+
+使用尖括号`<内容>`可以很方便地把网址、Email等变成可点击的超链接。  
+
+```
+<https://github.com/>
+```
+
+渲染效果：
+<https://github.com/>
+
+---
+## 图片语法
+
+要添加图像，请使用感叹号 (!), 然后在方括号增加替代文本，图片链接放在圆括号里，括号里的链接后可以增加一个可选的图片标题文本。
+
+markdown图片语法代码：  
+`![图片alt](图片链接 "图片title")`
+
+对应HTML代码：  
+`<img src="图片链接" alt="图片alt" title="图片title">`  
+
+### 链接图片
+
+这是把图像作为链接使用，或者说给图片增加链接。
+
+需要将图像的Markdown 代码括在方括号中，然后将链接添加在圆括号中。
+
+```
+[![图片alt](图片链接 "图片title")](链接地址)
+```
+渲染之后点击图片就会跳转到链接地址。
+
+---
 ## 代码语法
 
 ### 代码
@@ -103,6 +181,9 @@ Markdown基本语法允许您通过将行缩进四个空格或一个制表符来
 }
 ```
 
+##
+
+---
 ## Markdown代码块支持的语言列表
 
 |语言|关键字|调用的js|说明|
@@ -161,8 +242,54 @@ Markdown基本语法允许您通过将行缩进四个空格或一个制表符来
 |volt|...|...|...|
 |vhdl|...|...|...|
 
+---
+## 引用语法
 
+要创建块引用，请在段落前添加一个 `>` 符号。
+
+```
+> Dorothy followed her through many of the beautiful rooms in her castle.
+```
+
+渲染效果:
+> Dorothy followed her through many of the beautiful rooms in her castle.
+
+
+### 多个段落的引用
+
+块引用可以包含多个段落。为段落之间的空白行添加一个 > 符号。
+
+```
+> Dorothy followed her through many of the beautiful rooms in her castle.
+>
+> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
+```
+
+### 嵌套块引用
+
+块引用可以嵌套。在要嵌套的段落前添加一个 `>>` 符号。从嵌套块出来，则在段落结束后空一行再添加 `>>` 符号。
+
+```
+> Dorothy followed her through many of the beautiful rooms in her castle.
+>
+>> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
+>> 
+> something new
+```
+
+渲染效果：
+> Dorothy followed her through many of the beautiful rooms in her castle.
+>
+>> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
+>>
+> somethingnew
+
+### 带有其他元素的快引用
+
+---
 ## 参考资料
-<a href="https://markdown.com.cn/basic-syntax/" target="_blank">Markdown基本语法</a>
-<a href="https://markdown.com.cn/extended-syntax/" target="_blank">Markdown拓展语法</a>
+<a href="https://markdown.com.cn/basic-syntax/" target="_blank">Markdown基本语法</a>  
+
+<a href="https://markdown.com.cn/extended-syntax/" target="_blank">Markdown拓展语法</a>  
+
 
