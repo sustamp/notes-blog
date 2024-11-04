@@ -51,6 +51,8 @@ HTML中使用 flexbox 的区域就叫做 **flex 容器**（flex container）。�
 </div>
 ```
 
+上面代码中，div元素代表是Flex容器，span元素表示Flex的项目，这里有3个项目。
+
 *注意，设为 Flex 布局以后，子元素的float、clear和vertical-align属性将失效。*
 
 Flex 容器有两根轴线：
