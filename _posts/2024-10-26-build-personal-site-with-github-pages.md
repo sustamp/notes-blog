@@ -115,7 +115,7 @@ title: 你的主页标题 #输入你的页面标题
     </header>
 
     <main id="content" class="main-content" role="main">
-      {{ content }}
+      \{\{ content \}\}
 
       <footer class="site-footer">
         &#123;% if site.github.is_project_page %&#125;
@@ -153,7 +153,7 @@ layout: default
   </header>
 
   <div itemprop="articleBody">
-    {{ content }}
+    \{\{ content \}\}
   </div>
 
   &#123;% if site.disqus.shortname %&#125;
@@ -201,7 +201,7 @@ Hello world！
 <ul>
   &#123;% for post in site.posts %&#125;
     <li>
-      <a href="{{ post.url }}">{{ post.title }}</a><span>    ({{ post.date | date_to_string }})    </span>
+      <a href="\{\{ post.url \}\}">\{\{ post.title \}\}</a><span>    (\{\{ post.date | date_to_string \}\})    </span>
     </li>
   &#123;% endfor %&#125;
 </ul>
