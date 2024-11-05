@@ -3,7 +3,18 @@
 
   {%- include head.html -%}
 
-  <link ref="stylesheet" src="assets/css/outline.min.css">
+  <link ref="stylesheet" src="/History.markdown">
+  <!-- 引入outline.js的样式 -->
+  <link rel="stylesheet" href="/assets/css/outline.min.css">
+  <style>
+    /* *{border: 1px solid black;} */
+
+    .page-content{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  </style>
   <body>
 
     {%- include header.html -%}
@@ -12,12 +23,16 @@
       <div class="wrapper">
         {{ content }}
       </div>
+      <!-- 增加一个侧边栏：文章导读 -->
+      <aside id="aside">
+        <p>文章导读</p>
+      </aside>
     </main>
 
     {%- include footer.html -%}
 
 
-    <script src="assets/js/outline.min.js"></script>
+    <script src="/assets/js/outline.min.js"></script>
     <script>
       (function(){
           const defaults = Outline.DEFAULTS
