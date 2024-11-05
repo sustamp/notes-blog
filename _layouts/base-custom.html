@@ -11,8 +11,6 @@
 
     .page-content{
       display: flex;
-      flex-direction: row;
-      justify-content: space-between;
     }
   </style>
   <body>
@@ -35,19 +33,21 @@
     <script src="/assets/js/outline.min.js"></script>
     <script>
       (function(){
-          const defaults = Outline.DEFAULTS
-          let outline
-      
-          // defaults.position = 'sticky'
-          defaults.stickyHeight = 86
-          // position 的值为 sticky 或者 fixed 时需要指定
-          // parentElement 参数，即文章导航菜单插入的 DOM 位置
-          // 可以时 dom 元素，也可以是 DOM 元素的选择器字符串
-          defaults.parentElement = '#aside'
-          defaults.articleElement = '#article'
-          defaults.homepage = './index.md'
-          // Outline.DEFAULTS 是对象，应用类型的
-          outline = new Outline(defaults)    
+        const defaults = Outline.DEFAULTS
+        let outline
+
+        defaults.position = 'sticky'
+        defaults.stickyHeight = 86
+        defaults.parentElement = '#aside'
+        defaults.scrollElement = '#article'
+        defaults.homepage = '/notes-blog/index.html'
+        defaults.animationCurrent = false
+        defaults.reader = {
+          target: '#article',
+          title: document.querySelector('.title'),
+          allowSpeak: true
+        }
+        outline = new Outline(defaults)
       })()
   </script>
   </body>
