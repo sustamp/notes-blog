@@ -9,9 +9,9 @@
   <style>
     /* *{border: 1px solid black;} */
 
-    .page-content{
+    /* .page-content{
       display: flex;
-    }
+    } */
   </style>
   <body>
 
@@ -21,10 +21,6 @@
       <div class="wrapper">
         {{ content }}
       </div>
-      <!-- 增加一个侧边栏：文章导读 -->
-      <aside id="aside">
-        <p>文章导读</p>
-      </aside>
     </main>
 
     {%- include footer.html -%}
@@ -36,18 +32,13 @@
         const defaults = Outline.DEFAULTS
         let outline
 
-        defaults.position = 'sticky'
+        defaults.homepage = '/notes-blog/index.md'
         defaults.stickyHeight = 86
-        defaults.parentElement = '#aside'
-        defaults.scrollElement = '#article'
-        defaults.homepage = '/notes-blog/index.html'
-        defaults.animationCurrent = false
-        defaults.reader = {
-          target: '#article',
-          title: document.querySelector('.title'),
-          allowSpeak: true
-        }
+        defaults.placement = 'rtl'
+        defaults.closeOnClickModal = false
+        defaults.showNavModalFirst = true
         outline = new Outline(defaults)
+        outline.reload()
       })()
   </script>
   </body>
