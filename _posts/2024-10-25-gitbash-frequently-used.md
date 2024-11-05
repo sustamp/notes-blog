@@ -1,5 +1,6 @@
 ---
-layout: post
+# layout: post
+layout: post-custom
 title: "Git-Bash常用命令"
 ---
 

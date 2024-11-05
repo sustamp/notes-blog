@@ -1,5 +1,6 @@
 ---
-layout: post
+# layout: post
+layout: post-custom
 title: vue框架学习笔记
 ---
 

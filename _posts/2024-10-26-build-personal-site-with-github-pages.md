@@ -1,5 +1,6 @@
 ---
-layout: post
+#layout: post
+layout: post-custom
 title: 利用github pages构建个人网站
 ---
 

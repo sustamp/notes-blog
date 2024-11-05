@@ -1,5 +1,6 @@
 ---
-layout: post
+#layout: post
+layout: post-custom
 title: "使用Flexbox进行网页布局"
 ---
 

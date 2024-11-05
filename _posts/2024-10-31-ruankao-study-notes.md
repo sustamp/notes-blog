@@ -1,5 +1,6 @@
 ---
-layout: post
+# layout: post
+layout: post-custom
 title: "系统架构师教程学习笔记"
 ---
 

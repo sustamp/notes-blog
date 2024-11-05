@@ -1,5 +1,6 @@
 ---
-layout: post
+#layout: post
+layout: post-custom
 title: HTML及常用代码
 ---
 
