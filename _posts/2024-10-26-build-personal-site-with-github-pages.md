@@ -90,6 +90,9 @@ title: 你的主页标题 #输入你的页面标题
   &lt;html lang="&lcub;&lcub; site.lang | default: "en-US" &rcub;&rcub;"&gt;
     &lt;head&gt;
       &lt;meta charset="UTF-8"&gt;
+
+&lcub;% seo %&rcub;
+
       &lt;link rel="preconnect" href="https://fonts.gstatic.com"&gt;
       &lt;link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin&gt;
       &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
