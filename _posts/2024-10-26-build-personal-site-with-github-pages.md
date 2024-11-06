@@ -4,7 +4,7 @@ layout: post-custom
 title: 利用github pages构建个人网站
 ---
 
-本文介绍如何使用GitHub创建个人的网站或博客。在此之前，请确保你已经拥有一个github账号，否则请访问<a href="https://github.com/" target="_blank">GitHub</a>注册一个账号。
+本文介绍如何使用GitHub创建个人的网站或博客。在此之前，请确保你已经拥有一个github账号，否则请访问&lt;a href="https://github.com/" target="_blank"&gt;GitHub&lt;/a&gt;注册一个账号。
 
 **Tips**  
 注册账号时请为你填写一个**好看**的用户名，因为它将是你在GitHub上使用众多功能时的链接凭证。请尽量不要胡乱输入一个用户名。
@@ -36,13 +36,13 @@ GitHub个人站点将为你提供免费域名以供访问。域名格式为：`h
 - 使用main分支部署。在**Build And Deplovment**中点击**Source**下拉框，选择"Deploy from a branch"，Branch 选择 main。
 - 点击Save保存。
   
-<img src="/notes/assets/pictures/GitHub-Settings-1.png" />
+&lt;img src="/notes/assets/pictures/GitHub-Settings-1.png" /&gt;
 
 你也可以选择**其它分支**进行部署，这要求你提前新建好分支。比如新建一个`gh-pages`分支。
 
 **GitHub Actions** 是另外一个可选的部署方式。它可以进行代码的同步和部署，如果你使用GitHub Actions，可以配置触发条件和部署信息。当条件触发时，提交的代码会同步到分支上，然后在分支进行站点的部署和发布。
 
->启用Github Pages会创建仓库的部署。在等待部署期间，GitHub Actions可能需要长达一分钟的时间才能响应，需要耐心等待。  
+&gt;启用Github Pages会创建仓库的部署。在等待部署期间，GitHub Actions可能需要长达一分钟的时间才能响应，需要耐心等待。  
 注意：在Pages设置的顶部，会出现你的网站链接，复制链接或者点击"Visit Site"按钮可以访问你的GitHub Pages站点。
 
 
@@ -51,7 +51,7 @@ GitHub个人站点将为你提供免费域名以供访问。域名格式为：`h
 这里使用GitHub Pages推荐的jekyll主题来定制个人网站的风格。
 
 ### 2. 在仓库根目录下新建一个_config.yml文件。  
-在仓库**Code**菜单中添加一个文件Add file -> Create new file，上方填写文件名`_config.yml`，填写如下内容：
+在仓库**Code**菜单中添加一个文件Add file -&gt; Create new file，上方填写文件名`_config.yml`，填写如下内容：
 
 ```yaml
 remote_theme: pages-themes/cayman@v0.2.0 #这里选择你要使用的远程主题
@@ -78,89 +78,88 @@ title: 你的主页标题 #输入你的页面标题
 ---
 ```
 
->jekyll是量行3个分隔符号`---`作为虚线，是**YAML**头信息的识别区域。头信息必须在文件的开始部分，并且需要按照 YAML 的格式写在两行三虚线之间。任何只要包含 YAML 头信息的文件在 Jekyll 中都能被当做一个特殊的文件来处理
+&gt;jekyll是量行3个分隔符号`---`作为虚线，是**YAML**头信息的识别区域。头信息必须在文件的开始部分，并且需要按照 YAML 的格式写在两行三虚线之间。任何只要包含 YAML 头信息的文件在 Jekyll 中都能被当做一个特殊的文件来处理
 
 ### 3. 定制布局。  
 在上述第2点我们引用了`layout: defalut`的布局。这其实是使用的是`_layout`目录下的`default.html`文件。
 
 现在我们创建_layout目录并新建default.html。在仓库新建文件，输入`/_layout/default.html`，这会同时创建目录`_layout`，并新增`default.html`文件，文件内容如下：
 
-```html
-<!DOCTYPE html>
-<html lang="{{ site.lang | default: "en-US" }}">
-  <head>
-    <meta charset="UTF-8">
+<pre><code>
+  &lt;!DOCTYPE html&gt;
+  &lt;html lang="&lcub;&lcub; site.lang | default: "en-US" &rcub;&rcub;"&gt;
+    &lt;head&gt;
+      &lt;meta charset="UTF-8"&gt;
+      &lt;link rel="preconnect" href="https://fonts.gstatic.com"&gt;
+      &lt;link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin&gt;
+      &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+      &lt;meta name="theme-color" content="#157878"&gt;
+      &lt;meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"&gt;
+      &lt;link rel="stylesheet" href="&lcub;&lcub; '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url &rcub;&rcub;"&gt;
+      &lcub;% include head-custom.html %&rcub;
+    &lt;/head&gt;
+    &lt;body&gt;
+      &lt;a id="skip-to-content" href="#content"&gt;Skip to the content.&lt;/a&gt;
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#157878">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
-    &#123;% include head-custom.html %&#125;
-  </head>
-  <body>
-    <a id="skip-to-content" href="#content">Skip to the content.</a>
+      &lt;header class="page-header" role="banner"&gt;
+        &lt;h1 class="project-name"&gt;&lcub;&lcub; page.title | default: site.title | default: site.github.repository_name &rcub;&rcub;&lt;/h1&gt;
+        &lt;h2 class="project-tagline"&gt;&lcub;&lcub; page.description | default: site.description | default: site.github.project_tagline &rcub;&rcub;&lt;/h2&gt;
+        &lcub;% if site.github.is_project_page %&rcub;
+          &lt;a href="&lcub;&lcub; site.github.repository_url &rcub;&rcub;" class="btn"&gt;View on GitHub&lt;/a&gt;
+        &lcub;% endif %&rcub;
+        &lcub;% if site.show_downloads %&rcub;
+          &lt;a href="&lcub;&lcub; site.github.zip_url &rcub;&rcub;" class="btn"&gt;Download .zip&lt;/a&gt;
+          &lt;a href="&lcub;&lcub; site.github.tar_url &rcub;&rcub;" class="btn"&gt;Download .tar.gz&lt;/a&gt;
+        &lcub;% endif %&rcub;
+      &lt;/header&gt;
 
-    <header class="page-header" role="banner">
-      <h1 class="project-name">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
-      <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline }}</h2>
-      &#123;% if site.github.is_project_page %&#125;
-        <a href="{{ site.github.repository_url }}" class="btn">View on GitHub</a>
-      &#123;% endif %&#125;
-      &#123;% if site.show_downloads %&#125;
-        <a href="{{ site.github.zip_url }}" class="btn">Download .zip</a>
-        <a href="{{ site.github.tar_url }}" class="btn">Download .tar.gz</a>
-      &#123;% endif %&#125;
-    </header>
+      &lt;main id="content" class="main-content" role="main"&gt;
+        &lcub;&lcub; content &rcub;&rcub;
 
-    <main id="content" class="main-content" role="main">
-      \{\{ content \}\}
+        &lt;footer class="site-footer"&gt;
+          &lcub;% if site.github.is_project_page %&rcub;
+            &lt;span class="site-footer-owner"&gt;&lt;a href="&lcub;&lcub; site.github.repository_url &rcub;&rcub;"&gt;&lcub;&lcub; site.github.repository_name &rcub;&rcub;&lt;/a&gt; is maintained by &lt;a href="&lcub;&lcub; site.github.owner_url &rcub;&rcub;"&gt;&lcub;&lcub; site.github.owner_name &rcub;&rcub;&lt;/a&gt;.&lt;/span&gt;
+          &lcub;% endif %&rcub;
+          &lt;span class="site-footer-credits"&gt;This page was generated by &lt;a href="https://pages.github.com"&gt;GitHub Pages&lt;/a&gt;.&lt;/span&gt;
+        &lt;/footer&gt;
+      &lt;/main&gt;
+    &lt;/body&gt;
+  &lt;/html&gt;
+</code></pre>
 
-      <footer class="site-footer">
-        &#123;% if site.github.is_project_page %&#125;
-          <span class="site-footer-owner"><a href="{{ site.github.repository_url }}">{{ site.github.repository_name }}</a> is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a>.</span>
-        &#123;% endif %&#125;
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
-      </footer>
-    </main>
-  </body>
-</html>
-```
-
-这是GitHub Pages **cayman**主题的html模板，直接复制填写即可。有关cayman主题的官方内容请访问：<a href="https://github.com/pages-themes/cayman" target="_blank">https://github.com/pages-themes/cayman</a>。
+这是GitHub Pages **cayman**主题的html模板，直接复制填写即可。有关cayman主题的官方内容请访问：&lt;a href="https://github.com/pages-themes/cayman" target="_blank"&gt;https://github.com/pages-themes/cayman&lt;/a&gt;。
 
 jeykll目录结构中的`_layouts`目录是存放布局文件的。**default.html**是布局模板中的一种，我们还可以定义page.html, post.html，home.html等页面模板。然后在md文件的头信息中选择使用哪种布局模板。
 
 为了后续的博客文章编写，我们在定义一个post.html模板。在`_layout`目录下继续新增一个`post.html`文件。内容如下：
 
-```markdown
+<pre><code>
 ---
 layout: default
 ---
-<article itemscope itemtype="http://schema.org/BlogPosting">
+&lt;article itemscope itemtype="http://schema.org/BlogPosting"&gt;
 
-  <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">{{ page.title | escape }}</h1>
-    <p class="post-meta">
-      <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-        &#123;% assign date_format = site.cayman-blog.date_format | default: "%b %-d, %Y" %&#125;
-        {{ page.date | date: date_format }}
-      </time>
-      &#123;% if page.author %&#125;
-        • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author }}</span></span>
-      &#123;% endif %&#125;</p>
-  </header>
+  &lt;header class="post-header"&gt;
+    &lt;h1 class="post-title" itemprop="name headline"&gt;&lcub;&lcub; page.title | escape &rcub;&rcub;&lt;/h1&gt;
+    &lt;p class="post-meta"&gt;
+      &lt;time datetime="&lcub;&lcub; page.date | date_to_xmlschema &rcub;&rcub;" itemprop="datePublished"&gt;
+        &lcub;% assign date_format = site.cayman-blog.date_format | default: "%b %-d, %Y" %&rcub;
+        &lcub;&lcub; page.date | date: date_format &rcub;&rcub;
+      &lt;/time&gt;
+      &lcub;% if page.author %&rcub;
+        • &lt;span itemprop="author" itemscope itemtype="http://schema.org/Person"&gt;&lt;span itemprop="name"&gt;&lcub;&lcub; page.author &rcub;&rcub;&lt;/span&gt;&lt;/span&gt;
+      &lcub;% endif %&rcub;&lt;/p&gt;
+  &lt;/header&gt;
 
-  <div itemprop="articleBody">
-    \{\{ content \}\}
-  </div>
+  &lt;div itemprop="articleBody"&gt;
+    &lcub;&lcub; content &rcub;&rcub;
+  &lt;/div&gt;
 
-  &#123;% if site.disqus.shortname %&#125;
-    &#123;% include disqus_comments.html %&#125;
-  &#123;% endif %&#125;
-</article>
-```
+  &lcub;% if site.disqus.shortname %&rcub;
+    &lcub;% include disqus_comments.html %&rcub;
+  &lcub;% endif %&rcub;
+&lt;/article&gt;
+</code></pre>
 
 这模板会在之后的博客文章中用到。
    
@@ -189,23 +188,23 @@ title: 我的第一篇博客
 
 调整我们的index.md内容，填写一代代码：
 
-```markdown
+<pre><code>
 ---
 layout: default
 title: 你的主页标题
 ---
 
-Hello world！
+文章列表:
 
-## 文章列表
-<ul>
-  &#123;% for post in site.posts %&#125;
-    <li>
-      <a href="\{\{ post.url \}\}">\{\{ post.title \}\}</a><span>    (\{\{ post.date | date_to_string \}\})    </span>
-    </li>
-  &#123;% endfor %&#125;
-</ul>
-```
+&lt;ul&gt;
+  &lcub;% for post in site.posts %&rcub;
+    &lt;li&gt;
+      &lt;a href="&lcub;&lcub; post.url &rcub;&rcub;"&gt;&lcub;&lcub; post.title &rcub;&rcub;&lt;/a&gt;&lt;span&gt;    (&lcub;&lcub; post.date | date_to_string &rcub;&rcub;)    &lt;/span&gt;
+    &lt;/li&gt;
+  &lcub;% endfor %&rcub;
+&lt;/ul&gt;
+</code></pre>
+
 
 这样，jekyll就会遍历_posts目录，检索其下的文章内容，并显示在主页下，你就可以选择你的文章访问了。
 
