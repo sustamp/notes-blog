@@ -6,17 +6,16 @@ title: HTML知识
 本文记录html的一些知识，作为备忘录，以免时间长了又不知道怎么理解了。
 
 本文目录：
-- [HTML知识](#html知识)
-  - [html5基础结构](#html5基础结构)
-  - [html5引入了新的元素替代div元素](#html5引入了新的元素替代div元素)
-    - [header元素](#header元素)
-    - [nav元素](#nav元素)
-    - [main元素](#main元素)
-    - [section元素](#section元素)
-    - [Aside元素](#aside元素)
-    - [Article元素](#article元素)
-    - [Blockquote元素](#blockquote元素)
-    - [Footer元素](#footer元素)
+- [html5基础结构](#html5基础结构)
+- [html5引入了新的元素替代div元素](#html5引入了新的元素替代div元素)
+  - [header元素](#header元素)
+  - [nav元素](#nav元素)
+  - [main元素](#main元素)
+  - [section元素](#section元素)
+  - [Aside元素](#aside元素)
+  - [Article元素](#article元素)
+  - [Blockquote元素](#blockquote元素)
+  - [Footer元素](#footer元素)
 
 
 ## html5基础结构
@@ -75,13 +74,66 @@ HTML 的早期阶段进行往往也构建，最终搞成 div 汤 并不奇怪。
 
 当 2014 年 HTML5 发布时，它引入了一些新的部分和分组元素，web 开发人员可以使用这些元素来增强代码的语义性。
 
+下面先给定如下含html5元素的文件代码：
+
+```html
+<!-- demo.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex布局</title>
+    <!-- 引入其他路径的css文件 -->
+    <link rel="stylesheet" href="assets/css/flex-layout.css">
+</head>
+<body>
+    <header>
+        <!-- title与description为水平方向布局 -->
+        <section class="header-title">
+            <a href="https://sustamp.github.io/notes-blog" target="_blank">云溪笔录</a>
+        </section>
+        <section class="header-description">
+            <span>三更灯火五更鸡，正是男儿读书时。</span>
+        </section>
+    </header>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Archive</a>
+        <a href="#">About</a>
+    </nav>
+    <main>
+        <aside class="lftaside">
+            左侧栏
+            <p>这里可存放整个网站的目录列表或站点内容，或者大纲条目</p>
+        </aside>
+        <article id="article">
+            <!-- 文章内容 -->
+            <h2>html使用flex进行页面布局</h2>
+            <p>填写正文内容...</p>
+            <blockquote>
+                <p>好雨知时节</p>
+             </blockquote>
+        </article>
+        <aside class="rtaside" id="rtaside">
+            右侧栏
+            <p>这里可以存放中间栏内容的导航目录</p>
+        </aside>
+    </main>
+    <footer >
+        <p>页脚主要放版权声明/友情链接/联系方式/备案信息等</p>
+    </footer>
+</body>
+</html>
+```
+
+
 ### header元素
 `<header>` 元素用于展示介绍性内容，通常包含一组介绍性的或是辅助导航的实用元素。它可能包含一些标题元素，但也可能包含其他元素，比如 Logo、搜索框、作者名称，等等。
 
 `header`用在 HTML 文档的`body`标签中。这点与包含页面标题、元信息的`head`标签不同。
 
 ### nav元素
-
 `nav` 元素表示文档的导航部分。`nav` 应该包含给定页面、应用等主要导航链接。
 
 ### main元素
@@ -99,16 +151,6 @@ HTML 的早期阶段进行往往也构建，最终搞成 div 汤 并不奇怪。
 ### Blockquote元素
 
 在HTML中，可以使用 `<blockquote>` 标签来定义一个块引用。 元素内容引用自外部源 （譬如个人，文件，新闻，案例研究等），并将其显示为一个独立的块级元素。
-
-```html
-<main>
-   <article></article>
-   
-   <blockquote>
-      <p>好雨知时节</p>
-   </blockquote>
-</main>
-```
 
 ### Footer元素
 `footer` 元素表示文档或 section 的 「页脚」部分。大部分网站，footer 元素会用包含练习方式和公司信息，简短的「关于」介绍，社交媒体标志和链接等
