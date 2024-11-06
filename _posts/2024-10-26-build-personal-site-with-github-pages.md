@@ -4,7 +4,7 @@ layout: post-custom
 title: 利用github pages构建个人网站
 ---
 
-本文介绍如何使用GitHub创建个人的网站或博客。在此之前，请确保你已经拥有一个github账号，否则请访问&lt;a href="https://github.com/" target="_blank"&gt;GitHub&lt;/a&gt;注册一个账号。
+本文介绍如何使用GitHub创建个人的网站或博客。在此之前，请确保你已经拥有一个github账号，否则请访问<a href="https://github.com/" target="_blank">GitHub</a>注册一个账号。
 
 **Tips**  
 注册账号时请为你填写一个**好看**的用户名，因为它将是你在GitHub上使用众多功能时的链接凭证。请尽量不要胡乱输入一个用户名。
@@ -36,7 +36,7 @@ GitHub个人站点将为你提供免费域名以供访问。域名格式为：`h
 - 使用main分支部署。在**Build And Deplovment**中点击**Source**下拉框，选择"Deploy from a branch"，Branch 选择 main。
 - 点击Save保存。
   
-&lt;img src="/notes/assets/pictures/GitHub-Settings-1.png" /&gt;
+<img src="/notes/assets/pictures/GitHub-Settings-1.png" />
 
 你也可以选择**其它分支**进行部署，这要求你提前新建好分支。比如新建一个`gh-pages`分支。
 
@@ -130,7 +130,7 @@ title: 你的主页标题 #输入你的页面标题
   &lt;/html&gt;
 </code></pre>
 
-这是GitHub Pages **cayman**主题的html模板，直接复制填写即可。有关cayman主题的官方内容请访问：&lt;a href="https://github.com/pages-themes/cayman" target="_blank"&gt;https://github.com/pages-themes/cayman&lt;/a&gt;。
+这是GitHub Pages **cayman**主题的html模板，直接复制填写即可。有关cayman主题的官方内容请访问：<a href="https://github.com/pages-themes/cayman" target="_blank">https://github.com/pages-themes/cayman</a>。
 
 jeykll目录结构中的`_layouts`目录是存放布局文件的。**default.html**是布局模板中的一种，我们还可以定义page.html, post.html，home.html等页面模板。然后在md文件的头信息中选择使用哪种布局模板。
 
