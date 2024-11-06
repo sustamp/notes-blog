@@ -1,2 +1,16 @@
 // Placeholder to allow defining custom styles that override everything else.
 // (Use `_sass/minima/custom-variables.scss` to override variable defaults)
+body{
+    color:#606c71;
+}
+
+h1,h2,h3,h4,h5,h6{
+    color: black;
+}
+
+h2{
+    border-bottom:solid 3px;    
+}
+h3{
+border-bottom:solid 1px;
+}

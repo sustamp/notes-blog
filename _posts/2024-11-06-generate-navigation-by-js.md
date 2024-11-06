@@ -58,7 +58,6 @@ css样式可以直接在`<head>`标签引入，但js可能要在`<body>`标签�
     <title>练习使用outline.js</title>
 </head>
 <body>
-    <header>我是头部</header>
     <!-- cdn引入outline.min.js -->
     <script src="https://cdn.jsdelivr.net/gh/yaohaixiao/outline.js/outline.min.js"></script>
     <script>
@@ -102,7 +101,7 @@ css样式可以直接在`<head>`标签引入，但js可能要在`<body>`标签�
 ### 步骤2：创建文章区域
 在上一步中，我们会发现`articleElement='#my-article'`，这其实是表示要让outline.js解析html文件中的id为"my-article"的区域，用来生成目录结构。
 
-我们可以在`<body>`标签中使用`<div>`标签，并设置id为"my-article"，或者使用html5的新特性，使用`<article>`标签代替`<div>`，并指定id属性为"my-article"。
+但demo.html目前还没有文章区域的内容。接下来我们在`<body>`标签中使用`<div>`标签，并设置id为"my-article"，或者使用html5的新特性，使用`<article>`标签代替`<div>`，并指定id属性为"my-article"。
 
 完整代码如下：
 
@@ -126,6 +125,7 @@ css样式可以直接在`<head>`标签引入，但js可能要在`<body>`标签�
     <header>
         <h1>文章笔记</h1>
     </header>
+    <!-- 页面主区域 -->
     <main>
         <!-- 文章区域，设置id作为唯一标识 -->
         <!-- 等同于<div id="my-article"></div> -->
@@ -175,7 +175,9 @@ css样式可以直接在`<head>`标签引入，但js可能要在`<body>`标签�
 </html>
 ```
 
-这是使用浏览器打开demo.html文件即可看到效果。
+现在，使用浏览器打开demo.html文件即可看到效果。
+
+<img src="/notes/assets/pictures/demo-outlinejs.png" alt="demo-outlinejs">
 
 ---
 ## API文档
