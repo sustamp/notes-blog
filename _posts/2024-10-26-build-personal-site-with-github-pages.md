@@ -9,7 +9,7 @@ title: 利用github pages构建个人网站
 **Tips**  
 注册账号时请为你填写一个**好看**的用户名，因为它将是你在GitHub上使用众多功能时的链接凭证。请尽量不要胡乱输入一个用户名。
 
-## 1.创建仓库
+## 步骤1：创建仓库
 
 GitHub有**个人站点**[user]和**项目站点**[project]的之分。
 
@@ -29,7 +29,7 @@ GitHub个人站点将为你提供免费域名以供访问。域名格式为：`h
    我们可以在仓库新建一个文件Create new file，命名为：index.html，这是主页文件。文件内容可以随便填写，比如"Hello world!"，然后点击提交。此时我们在浏览器访问个人站点或项目站点就可以看到这个页面上的内容了。
    站点地址默认会读index.html/index.md/README.md等文件的内容。
 
-## 2.启用Github pages
+## 步骤2：启用Github pages
 
 - 点击仓库的**Settings**菜单进入配置页。
 - 选择左侧栏中**Code and automation**下的Pages进入GitHub Pages设置页。
@@ -46,11 +46,11 @@ GitHub个人站点将为你提供免费域名以供访问。域名格式为：`h
 注意：在Pages设置的顶部，会出现你的网站链接，复制链接或者点击"Visit Site"按钮可以访问你的GitHub Pages站点。
 
 
-## 2.定制主题
+## 步骤3：定制主题
 
 这里使用GitHub Pages推荐的jekyll主题来定制个人网站的风格。
 
-### 2. 在仓库根目录下新建一个_config.yml文件。  
+### 1.在仓库根目录下新建一个_config.yml文件
 在仓库**Code**菜单中添加一个文件Add file -&gt; Create new file，上方填写文件名`_config.yml`，填写如下内容：
 
 ```yaml
@@ -66,7 +66,7 @@ baseurl: "/"  #项目站点设置为"/仓库名"
 
 Commit提交后保存。
 
-### 2. 编写index.md文件，编写主页内容。  
+### 2.编写index.md文件，编写主页内容。 
 我们之前创建了一个index.html文件，具备前端编程能力的开发者们可以在这里自己定义html内容打造自己专属的主页内容。  
 
 但这里我们用jekyll主题面向非开发者编写主页。将index.html改名为index.md。在原有内容的顶部增加如下代码:  
@@ -80,7 +80,7 @@ title: 你的主页标题 #输入你的页面标题
 
 &gt;jekyll是量行3个分隔符号`---`作为虚线，是**YAML**头信息的识别区域。头信息必须在文件的开始部分，并且需要按照 YAML 的格式写在两行三虚线之间。任何只要包含 YAML 头信息的文件在 Jekyll 中都能被当做一个特殊的文件来处理
 
-### 3. 定制布局。  
+### 3.定制布局。  
 在上述第2点我们引用了`layout: defalut`的布局。这其实是使用的是`_layout`目录下的`default.html`文件。
 
 现在我们创建_layout目录并新建default.html。在仓库新建文件，输入`/_layout/default.html`，这会同时创建目录`_layout`，并新增`default.html`文件，文件内容如下：
@@ -167,9 +167,9 @@ layout: default
 这模板会在之后的博客文章中用到。
    
 
-## 3.编写博客文章
+## 步骤4：编写博客文章
 
-### 1. 创建博客目录_posts。  
+### 1.创建博客目录_posts
 
 jeykll要求将博客文章放置在`_posts`目录下，目录下的文章文件默认要求`yyyy-MM-dd-title.md`格式命名。
 
@@ -187,7 +187,7 @@ title: 我的第一篇博客
 
 这里，布局使用的是post.html页面模板，title是对你的文章标题。文件提交保存后，其实就可以进行访问了。为了让文章在我们的主页显示出来，需要修改index.md文件。
 
-### 2. 主页显示文章
+### 2.主页显示文章
 
 调整我们的index.md内容，填写一代代码：
 

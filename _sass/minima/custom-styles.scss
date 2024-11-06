@@ -1,11 +1,18 @@
 // Placeholder to allow defining custom styles that override everything else.
 // (Use `_sass/minima/custom-variables.scss` to override variable defaults)
-body{
-    color:#606c71;
+
+body {
+    color: #606c71;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+  
+strong{
+color: black;
+font-weight: 600;
 }
 
-h1,h2,h3,h4,h5,h6{
-    color: black;
+h2,h3,h4,h5,h6{
+    color: #159957;
 }
 
 h2{
