@@ -1,4 +1,7 @@
-# HTML知识
+---
+layout: post-custom
+title: HTML知识
+---
 
 本文记录html的一些知识，作为备忘录，以免时间长了又不知道怎么理解了。
 
