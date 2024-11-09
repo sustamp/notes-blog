@@ -1,3 +1,8 @@
+## 资料参考
+<a href = "https://blog.csdn.net/sinat_38816924/article/details/108236046" target="_blank">github-page的搭建过程</a>
+
+## 以下是原内容
+
 <div align="center">
   <p><em><strong>Disclaimer:</strong> The information here may vary depending on the version you're using.<br/>
   Please refer to the <code>README.md</code> bundled within the theme-gem for information specific to your version or by pointing
@@ -8,10 +13,6 @@
   <p><a href="https://jekyll.github.io/minima/">Theme preview</a></p>
   <p><img src="/screenshot.png"/></p>
 </div>
-
-## 资料参考
-
-<a href = "https://blog.csdn.net/sinat_38816924/article/details/108236046" target="_blank">github-page的搭建过程</a>
 
 ## Installation
 
