@@ -9,6 +9,10 @@
   <p><img src="/screenshot.png"/></p>
 </div>
 
+## 资料参考
+
+<a href = "https://blog.csdn.net/sinat_38816924/article/details/108236046" target="_blank">github-page的搭建过程</a>
+
 ## Installation
 
 Add this line to your Jekyll site's Gemfile:
