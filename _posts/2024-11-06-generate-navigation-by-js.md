@@ -10,7 +10,7 @@ title:  "利用outline.js生成文章导读目录"
 
 这里我用到的是`outline.js`，自动生成文章导读（Table of Contents）导航的 JavaScript 工具。
 
-GitHub有该项目仓库，地址：<a href="https://github.com/yaohaixiao/outline.js">https://github.com/yaohaixiao/outline.js</a>
+GitHub有该项目仓库，地址：<a href="https://github.com/yaohaixiao/outline.js" target="_blank">https://github.com/yaohaixiao/outline.js</a>
 
 首先要引入`outline.js`，可以使用CDN引入或者下载源码作本地引入。
 
@@ -24,7 +24,7 @@ GitHub有该项目仓库，地址：<a href="https://github.com/yaohaixiao/outli
 ### 本地引入
 
 在GitHub上访问`outline.js`项目的**Release**页面有下载选项，Release地址：
-<a href="https://github.com/yaohaixiao/outline.js/releases">https://github.com/yaohaixiao/outline.js/releases</a>
+<a href="https://github.com/yaohaixiao/outline.js/releases" target="_blank">https://github.com/yaohaixiao/outline.js/releases</a>
 
 可以选择不同的版本下载。我下载的是`outline.js-3.40.1`。解压缩后得到的源码文件里我用到了以下的几个文件：
 - outline.min.css
@@ -142,7 +142,7 @@ css样式可以直接在`<head>`标签引入，但js可能要在`<body>`标签�
     </main>
 
     <!-- cdn引入outline.min.js -->
-    <script src="outline.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/yaohaixiao/outline.js/outline.min.js"></script>
     <!-- 初始化outline.js参数生成目录 -->
     <script>
         (function(){
@@ -182,7 +182,7 @@ css样式可以直接在`<head>`标签引入，但js可能要在`<body>`标签�
 ---
 ## API文档
 
-完整API文档地址：<a href="https://yaohaixiao.github.io/outline.js/">https://yaohaixiao.github.io/outline.js/</a>
+完整API文档地址：<a href="https://yaohaixiao.github.io/outline.js/" target="_blank">https://yaohaixiao.github.io/outline.js/</a>
 
 这里我介绍下上面代码用到的参数。
 

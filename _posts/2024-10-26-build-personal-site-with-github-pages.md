@@ -214,3 +214,8 @@ title: 你的主页标题
 访问前关注一下仓库中**Actions**内容，查看部署进度，部署成功后，新的内容才会生成。
 
 
+## 参考资料
+[1] <a href="https://www.github-zh.com/getting-started/github-pages" target="_blank">使用GitHub Page创建个人博客和网站</a>
+
+
+
