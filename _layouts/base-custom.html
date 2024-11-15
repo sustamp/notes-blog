@@ -31,16 +31,26 @@
     <script src="/assets/js/toc-recto/toc-recto.js"></script>
     <script>
       (function(){
-        const defaults = Outline.DEFAULTS;
-        let outline;
+        //const defaults = Outline.DEFAULTS;
+        //let outline;
 
-        defaults.homepage = '/notes-blog/index.html';
-        defaults.stickyHeight = 86;
-        defaults.placement = 'rtl';
-        defaults.closeOnClickModal = true;
-        defaults.showNavModalFirst = true;
-        outline = new Outline(defaults);
-        outline.reload();
+        //defaults.homepage = '/notes-blog/index.html';
+        //defaults.stickyHeight = 86;
+        //defaults.placement = 'rtl';
+        //defaults.closeOnClickModal = true;
+        //defaults.showNavModalFirst = true;
+        //outline = new Outline(defaults);
+        //outline.reload();
+
+        // 调整配置
+        let config = {
+            article: 'article'
+        };
+        // 创建一个TocRecto
+        const tocRecto = new TocRecto(config);
+        // 使用TocRecto的原型方法生成toc目录
+        tocRecto.generateTOC();
+        
       })()
   </script>
   </body>
