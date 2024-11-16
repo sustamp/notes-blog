@@ -3,7 +3,15 @@ layout: post-custom
 title: toc-recto.js文章导读目录(tabe of contents)生成器
 ---
 
-**toc-recto.js**是我借助阿里**通义灵码**AI-Chat问答功能辅助编写的TOC(table of contents, 文章导读目录)脚本。脚本内容如下：
+js+css生成文章内容导读目录。自测在网页端，移动端都有不错的效果。
+
+项目地址：
+<a href="https://github.com/sustamp/toc-recto.js" target="_blank">https://github.com/sustamp/toc-recto.js</a>
+
+文章地址：
+<a href="https://sustamp.github.io/notes-blog/2024/11/15/su-toc-recto-usage.html" target="_blank">toc-recto.js文章导读目录生成器</a>
+
+**toc-recto.js**是我借助阿里**通义灵码**AI-Chat问答功能辅助编写的TOC(table of contents, 文章导读目录)脚本，纯js+css代码。脚本内容如下：
 1. toc-recto.js
 2. toc-recto.css
 
@@ -69,6 +77,17 @@ title: toc-recto.js文章导读目录(tabe of contents)生成器
 ```
 
 > tips:创建一个对象，使用对象的方法。  
+
+`(function(){})()`是**立即执行函数表达式（Immediately Invoked Function Expression, IIFE）**，书写格式为：
+
+- `(function() { /* 代码 */ })();` 或者
+- `(function() { /* 代码 */ }());`
+  
+IIFE一般的作用是：
+1. 作用域隔离：
+   - IIFE 创建了一个新的作用域，避免了全局变量污染。这有助于防止与其他脚本或库中的变量发生冲突。
+2. 初始化代码：
+   - IIFE 可以用于执行一些初始化操作，如设置初始状态、绑定事件监听器等。
 
 
 如果想直接使用**默认配置**进行调用，代码可以简化如下：
@@ -151,3 +170,52 @@ toc.generateTOC();
 <img src="https://sustamp.github.io/assets/pictures/toc-recto/toc-recto1.jpg" alt="toc-recto.js效果图1">
 
 <img src="https://sustamp.github.io/assets/pictures/toc-recto/toc-recto2.jpg" alt="toc-recto.js效果图2">
+
+## 参数配置
+调用`toc-recto.js`时使用json格式变量传递给构造函数，可以调整配置。示例代码：
+
+```js
+let config = {
+        // 绑定分析区域
+        article: 'article',
+        // 要解析的标题级别
+        headings: 'h2,h3,h4,h5,h6',
+        // 导读栏标题
+        tocHeader: 'table of contents',
+    };
+// 创建一个toc对象
+var toc = new TocRecto(config);
+toc.generateTOC();
+```
+
+目前`toc-recto.js`的代码量不大，有些定制化的参数会在后续过程中逐渐完善。现在罗列下一些主要参数。
+
+### article
+文章参数，指定要解析的内容区域。
+
+|type|default|
+|:---|:---|
+|`String`|`'article'`|
+
+解析html文件中，任意`<div id="${article}"></div>`的内容。
+
+### headings
+要解析的标题级别。
+
+|type|default|
+|:---|:---|
+|`String`|`'h2,h3,h4,h5,h6'`|
+
+### tocHeader
+导读栏展开时的标题。
+
+|type|default|
+|:---|:---|
+|`String`|`'本文目录'`|
+
+### headingOptimal
+标题id优化，为避免有些id命名和html元素冲突，故在分析内容其余时为标题id加一个前缀`heading-`。
+
+|type|default|
+|:---|:---|
+|`Boolean`|`true`|
