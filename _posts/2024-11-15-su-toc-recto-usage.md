@@ -21,13 +21,13 @@ title: toc-recto.js文章导读目录(tabe of contents)生成器
 
 脚本会分析html中有dom元素`id="article"`的区域内容，解析其中h2~h6级别的标题，然后生成内容到导读区域。
 
-> `article`是默认值，可以通过传参设置其他的id。
-> h2~h6并不是固定的，也可以通过传参调节。
+> `article`是默认值，可以通过传参设置其他的id。  
+> h2~h6并不是固定的，也可以通过传参调节。  
 > 导读菜单栏的功能按钮目前是固定的。
 
 
 ## 用法
-### 1.引入toc-recto.js及其样式
+### 步骤1：引入toc-recto.js及其样式
 下载源码，然后在你的html页面或功能模板页面做如下步骤。
 
 在`<stye>`标签中引入样式：
@@ -47,8 +47,8 @@ title: toc-recto.js文章导读目录(tabe of contents)生成器
 
 > 在末尾引入js，一般认为此时html的dom元素都加载完成了
 
-### 2.编写调用脚本
-在`<body>`标签的末尾继续编写一小段代码调用`toc-recto.js`:
+### 步骤2：编写调用脚本
+在`<body>`标签的末尾继续编写一小段代码调用`toc-recto.js`。
 
 ```html
 <script src="toc-recto/toc-recto.js"></script>
@@ -57,7 +57,8 @@ title: toc-recto.js文章导读目录(tabe of contents)生成器
     (function(){
         // 调整配置
         let config = {
-            article: 'article'
+            //设置成你html内容区域<div id="your-id">的id
+            article: 'your-id'
         };
         // 创建一个TocRecto
         const tocRecto = new TocRecto(config);
@@ -67,8 +68,27 @@ title: toc-recto.js文章导读目录(tabe of contents)生成器
 </script>
 ```
 
-### 3.确认或设置html中dom元素的id
-本文提到过`toc-recto.js`是将htmll中`id="${article}"`的元素的内容作为分析区域的。所以请确保你的html文件或模板有为内容区域设置id。
+> tips:创建一个对象，使用对象的方法。  
+
+
+如果想直接使用**默认配置**进行调用，代码可以简化如下：
+
+```html
+<!-- 在body末尾处引入脚本 -->
+<script src="toc-recto/toc-recto.js"></script>
+<script>
+// 创建一个toc对象
+var toc = new TocRecto();
+toc.generateTOC();
+</script>
+```
+
+> 使用默认配置调用`toc-recto.js`分析的是 `id="article"` 的元素内容区域，即：`<div id="article"></div>`
+
+
+
+### 步骤3：设置内容元素的id
+在之前提到过`toc-recto.js`是分析html文件中 `<div id="your-id"></div>` 的元素的内容作为分析区域的。所以请确保你的html文件或模板有为该内容元素设置id。
 
 完整的使用示例如下：
 
@@ -125,3 +145,9 @@ title: toc-recto.js文章导读目录(tabe of contents)生成器
 </html>
 
 ```
+
+现在，你可以在浏览器刷新页面，查看效果了。
+
+<img src="https://sustamp.github.io/assets/pictures/toc-recto/toc-recto1.jpg" alt="toc-recto.js效果图1">
+
+<img src="https://sustamp.github.io/assets/pictures/toc-recto/toc-recto2.jpg" alt="toc-recto.js效果图2">
