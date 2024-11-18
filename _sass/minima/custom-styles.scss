@@ -2,8 +2,15 @@
 // (Use `_sass/minima/custom-variables.scss` to override variable defaults)
 
 body {
-    color: #606c71;
-    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #4f565a;
+    line-height: 1.7;
+    letter-spacing: 1.5px;
+    font: 400 14px/1.4 -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Segoe UI Emoji", "Segoe UI Symbol", "Apple Color Emoji", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #eee;
+}
+
+.wrapper{
+    background-color: #fff;
 }
 
 .site-header {
@@ -35,18 +42,22 @@ body {
 
 
 strong{
-color: black;
-font-weight: 600;
+    color: tomato;
+    font-weight: 600;
 }
 
 h2,h3,h4,h5,h6{
-    color: #159957;
+    color: deepskyblue;
 }
 
 h2{
-    border-bottom:solid 3px;    
+    border-bottom:solid 2px;    
 }
 h3{
-border-bottom:solid 1px;
+    border-bottom:solid 1px;
+}
+
+blockquote{
+    font-size: 0.9em;
 }
 
