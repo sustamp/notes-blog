@@ -1,6 +1,6 @@
 ---
 layout: post-custom
-title: toc-recto.js文章导读目录(tabe of contents)生成器
+title: toc-recto.js文章导读目录TOC生成器
 ---
 
 js+css生成文章内容导读目录。自测在网页端，移动端都有不错的效果。
@@ -9,7 +9,7 @@ js+css生成文章内容导读目录。自测在网页端，移动端都有不�
 <a href="https://github.com/sustamp/toc-recto.js" target="_blank">https://github.com/sustamp/toc-recto.js</a>
 
 文章地址：
-<a href="https://sustamp.github.io/notes-blog/2024/11/15/su-toc-recto-usage.html" target="_blank">toc-recto.js文章导读目录生成器</a>
+<a href="https://sustamp.github.io/notes-blog/2024/11/15/su-toc-recto-usage.html" target="_blank">toc-recto.js文章导读目录TOC生成器</a>
 
 **toc-recto.js**是我借助阿里**通义灵码**AI-Chat问答功能辅助编写的TOC(table of contents, 文章导读目录)脚本，纯js+css代码。脚本内容如下：
 1. toc-recto.js
