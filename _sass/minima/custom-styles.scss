@@ -6,7 +6,7 @@ body {
     line-height: 1.7;
     letter-spacing: 1.5px;
     font: 400 14px/1.4 -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Segoe UI Emoji", "Segoe UI Symbol", "Apple Color Emoji", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #f6f6f6;
+    // background-color: #f6f6f6;
 }
 
 .post {
@@ -40,6 +40,19 @@ body {
     text-decoration: none;
     display: flex;
     align-items: center;
+}
+
+// 代码块样式调整
+pre, code{
+    background-color: #f6f8fa;
+}
+
+.highlighter-rouge .highlight {
+    background-color: #f6f8fa;
+}
+
+.highlight .kd {    
+    color: darkviolet;
 }
 
 
