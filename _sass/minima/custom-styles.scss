@@ -23,7 +23,7 @@ body {
     /* 固定在顶部 */
     // top: 0; 
     /* justify-content: space-between; */
-    background: white;
+    background: #fff;
     box-shadow: 0 .325rem .25rem rgba(0, 0, 0, 0.075)!important;
 }
 
@@ -40,6 +40,10 @@ body {
     text-decoration: none;
     display: flex;
     align-items: center;
+}
+
+.site-nav {
+    top: 22px;
 }
 
 // 代码块样式调整
@@ -72,6 +76,9 @@ h2{
 }
 h3{
     border-bottom:solid 1px;
+}
+h4,h5{
+    border-bottom: solid 0.2px #cccccc;
 }
 
 blockquote{
