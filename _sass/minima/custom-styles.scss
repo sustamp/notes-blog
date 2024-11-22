@@ -60,6 +60,10 @@ pre{
 pre > code {
     color: #ddd;
 }
+// 设置代码区域中.p样式之后的.nx样式颜色
+pre .p + .nx {
+    color: red;
+}
 
 .highlighter-rouge .highlight {
     // background-color: #f6f8fa;
@@ -92,15 +96,24 @@ pre > code {
     color: red;
     font-weight: bold;
 }
-// 注释
+// 注释：森林绿
+.highlight .c {
+    color: forestgreen;
+    font-style: italic;
+}
 .highlight .c1 {
-    color: #998;
+    color: forestgreen;
     font-style: italic;
 }
 // 变量复制
 .highlight .s1 {
     color: orange;
 }
+// 文本：深灰色
+.highlight .nx {
+    color: darkgrey;
+}
+
 
 strong{
     color: tomato;
