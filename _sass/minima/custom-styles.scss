@@ -2,7 +2,7 @@
 // (Use `_sass/minima/custom-variables.scss` to override variable defaults)
 
 body {
-    color: #6f757d;
+    color: #4c5357;
     line-height: 1.7;
     letter-spacing: 1.5px;
     font: 400 15px/1.5 -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Segoe UI Emoji", "Segoe UI Symbol", "Apple Color Emoji", Roboto, Helvetica, Arial, sans-serif;
@@ -13,7 +13,6 @@ body {
     /* background-color: #fff; */
     border-radius: 5px;
     padding: 10px 20px;
-    margin: 5px 15px;
 }
 
 .site-header {
@@ -48,22 +47,9 @@ body {
 }
 
 // 代码块样式调整
-code{
-    background-color: transparent;
-    color: firebrick;
-    border: 1px solid #e8e8e8;
+pre, code{
+    background-color: #f6f8fa;
 }
-
-// pre{
-//     border: 1px solid #2b2b2b;
-// }
-// pre > code {
-//     color: #ddd;
-// }
-// 设置代码区域中.p样式之后的.nx样式颜色
-// pre .p + .nx {
-//     color: bisque;
-// }
 
 .highlighter-rouge .highlight {
     background-color: #f6f8fa;
@@ -71,26 +57,41 @@ code{
     // border-radius: 5px;
 }
 
-// // 标签名
-// .highlight .nt {
-//     color: dodgerblue;
+// code{
+//     background-color: transparent;
+//     color: firebrick;
 // }
-// //属性名
-// .highlight .na {
-//     color: lightskyblue;
+// pre{
+//     border: 1px solid #2b2b2b;
 // }
-// .highlight .s {
-//     color: orange;
+// pre > code {
+//     color: black;
 // }
-// // 关键字
-// .highlight .kd {    
-//     color: blueviolet;
+// 设置代码区域中.p样式之后的.nx样式颜色
+// pre .p + .nx {
+//     color: bisque;
 // }
-// // 类名
-// .highlight .nc {
-//     color: #dc1bff;
-//     font-weight: bold;
-// }
+
+// 标签名
+.highlight .nt {
+    color: dodgerblue;
+}
+//属性名
+.highlight .na {
+    color: lightskyblue;
+}
+.highlight .s {
+    color: orange;
+}
+// 关键字
+.highlight .kd {    
+    color: blueviolet;
+}
+// 类名
+.highlight .nc {
+    color: #dc1bff;
+    font-weight: bold;
+}
 // // 方法名
 // .highlight .nf {
 //     color: red;
@@ -113,7 +114,6 @@ code{
 // .highlight .nx {
 //     color: darkgrey;
 // }
-
 
 strong{
     color: tomato;
@@ -138,6 +138,3 @@ blockquote{
     font-size: 0.9em;
 }
 
-em {
-    border-bottom: dashed 1px chocolate;
-}
