@@ -58,14 +58,15 @@ body {
 }
 
 code{
-    // background-color: transparent;
+    background-color: transparent;
     color: firebrick;
+    border: solid 1px #e8e8e8;
 }
 pre{
     border: 1px solid #2b2b2b;
 }
 pre > code {
-    color: black;
+    color: #ddd;
 }
 // 设置代码区域中.p样式之后的.nx样式颜色
 // pre .p + .nx {
