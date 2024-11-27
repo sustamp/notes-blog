@@ -25,7 +25,7 @@ MD5、SHA1、SHA256、SHA512等都是Hash算法。
 ## 3.哈希碰撞的解决方案
 
 > **抽屉原理**：桌上有10盒巧克力，要放到9个抽屉中。无论怎么放，至少有一个抽屉会放不少于2盒的巧克力。这个现象就是"抽屉原理"。  
-> 抽屉原理又是也叫鸽巢原理，它是组合数学的一个重要原理。
+> 抽屉原理也叫鸽巢原理，它是组合数学的一个重要原理。
 
 根据抽屉原理，hash算法是有一定冲突的。那有冲突自然就要解决冲突。常用方法有：
 - 链地址法
@@ -298,3 +298,10 @@ for block_number, received_data in received_blocks:
 ### GeoHash
 
 ### 布隆过滤器
+
+## 资料引用
+[1] [哈希算法原理详解](https://blog.csdn.net/weixin_52622200/article/details/118548530)
+
+[2] [Redis第10讲——Redis数据分片的三种算法](https://blog.csdn.net/weixin_45433817/article/details/136994475)
+
+[3] [图解一致性哈希算法，看这一篇就够了](https://cloud.tencent.com/developer/article/2245021)
