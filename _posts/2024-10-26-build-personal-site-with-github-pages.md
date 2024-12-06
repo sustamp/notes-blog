@@ -91,7 +91,7 @@ title: 你的主页标题 #输入你的页面标题
 > jekyll是量行3个分隔符号`---`作为虚线，是**YAML**头信息的识别区域。  
 > 头信息必须在文件的开始部分，并且需要按照 YAML 的格式写在两行三虚线之间。任何只要包含 YAML 头信息的文件在 Jekyll 中都能被当做一个特殊的文件来处理
 
-### 3.定制布局。  
+### 3.定制布局
 在上述第2点我们引用了`layout: defalut`的布局。这其实是使用的是`_layout`目录下的`default.html`文件。
 
 现在我们创建_layout目录并新建`default.html`。在仓库新建文件，输入`/_layout/default.html`，这会同时创建目录`_layout`，并新增`default.html`文件，文件内容如下：
@@ -141,7 +141,10 @@ title: 你的主页标题 #输入你的页面标题
   &lt;/html&gt;
 </code></pre>
 
-这是GitHub Pages **cayman**主题的html模板，直接复制填写即可。有关cayman主题的官方内容请访问：<a href="https://github.com/pages-themes/cayman" target="_blank">https://github.com/pages-themes/cayman</a>。
+
+这是GitHub Pages **cayman**主题的html模板，直接复制填写即可。
+
+*有关cayman主题的官方内容请访问：<a href="https://github.com/pages-themes/cayman" target="_blank">https://github.com/pages-themes/cayman</a>*
 
 jeykll目录结构中的`_layouts`目录是存放布局文件的。`default.html`是布局模板中的一种，我们还可以定义`page.html`, `post.html`, `home.html`等页面模板。然后在md文件的头信息中选择使用哪种布局模板。
 
@@ -181,11 +184,11 @@ layout: default
 
 ## 步骤4：编写博客文章
 
-### 1.创建博客目录_posts
+### 1.新建一个博客文章
 
-jeykll要求将博客文章放置在`_posts`目录下，目录下的文章文件默认要求`yyyy-MM-dd-title.md`格式命名。
+jeykll要求将博客文章放置在 `_posts` 目录下，目录下的文章文件默认要求`yyyy-MM-dd-title.md`格式命名。
 
-在目标仓库继续新增文件，输入`/_posts/2024-10-31-my-first-post.md`，就可以创建_posts目录，同时创建了一个2024-10-31-my-first-post.md文件，它将是我们的第一篇博客文章。
+在目标仓库继续新增文件，输入`/_posts/2024-10-31-my-first-post.md`，这样可以同时创建 `_posts` 目录和 `2024-10-31-my-first-post.md` 文件，它将是我们的第一篇博客文章。
 
 文章内容可随便填写，但主题区域需要一些基本设置：
 
@@ -201,9 +204,9 @@ title: 我的第一篇博客
 
 这里，布局使用的是`post.html`页面模板，`title`是对你的文章标题。文件提交保存后，其实就可以进行访问了。为了让文章在我们的主页显示出来，需要修改`index.md`文件。
 
-### 2.主页显示文章
+### 2.在主页显示文章列表
 
-调整我们的`index.md`内容，填写一代代码：
+调整我们的主页文件 `index.md` 内容，添加如下代码：
 
 <pre><code>
 ---
