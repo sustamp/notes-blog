@@ -1,6 +1,6 @@
 ---
 layout: post-custom
-title: toc-recto.js文章导读目录TOC生成器
+title: toc-recto.js生成文章导读目录TOC
 ---
 
 js+css生成文章内容导读目录。自测在网页端，移动端都有不错的效果。

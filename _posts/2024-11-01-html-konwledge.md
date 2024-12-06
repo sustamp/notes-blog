@@ -5,19 +5,6 @@ title: HTML知识
 
 本文记录html的一些知识，作为备忘录，以免时间长了又不知道怎么理解了。
 
-本文目录：
-- [html5基础结构](#html5基础结构)
-- [html5引入了新的元素替代div元素](#html5引入了新的元素替代div元素)
-  - [header元素](#header元素)
-  - [nav元素](#nav元素)
-  - [main元素](#main元素)
-  - [section元素](#section元素)
-  - [Aside元素](#aside元素)
-  - [Article元素](#article元素)
-  - [Blockquote元素](#blockquote元素)
-  - [Footer元素](#footer元素)
-
-
 ## html5基础结构
 
 在vscode编辑器打开html文件，在空白处输入：

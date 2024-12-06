@@ -1,6 +1,6 @@
 ---
 layout: post-custom
-title:  "利用outline.js生成文章导读目录"
+title:  "利用outline.js生成TOC"
 ---
 
 本文介绍如何利用js脚本为文章页面生成导读目录（解析h1~h6标题）。

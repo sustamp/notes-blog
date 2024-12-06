@@ -11,23 +11,31 @@ title: 利用github pages构建个人网站
 
 ## 步骤1：创建仓库
 
-GitHub有**个人站点**[user]和**项目站点**[project]的之分。
+GitHub仓库根据命名的不同会区分成：
+- **个人站点**[user]
+- **项目站点**[project]
 
-GitHub个人站点将为你提供免费域名以供访问。域名格式为：`https://[username].github.io`。其中`username`就是你的用户名，域名格式在Github上是固定的，它将是你的个人主页地址。如果你自己购买了域名，也可以用自己购买的域名与这个地址映射。
+
+GitHub的个人站点将为你提供免费域名以供访问。域名格式为：`https://[username].github.io`。
+- `username`就是你的用户名，域名格式在Github上是固定的，它将是你的个人主页地址。
+- 如果你自己购买了域名，也可以用自己购买的域名与这个地址映射。
 
 接下来我们来创建仓库，这里建议尽量创建**公共**仓库(Public)，因为私有仓库(Private)在 GitHub Action有免费额度限制。
 
-1. 登录GitHub后，点击右上角的"+"号按钮创建一个新的仓库"New repository"。  
-   - 若将仓库名"Repository Name"命名为：`[username].github.io`，确认创建后你的**个人站点**就创建成功了。访问地址：https://[username].github.io。  
-   - 若仓库名命名不是`[username].github.io`的格式，比如你命名成`HelloGit`，则在GitHub上创建一个名为"HelloGit"的**项目仓库**，同时它也将是你的**项目站点**。访问地址：https://[username].github.io/[repositoryname]  
+登录GitHub后，点击右上角的`+`号按钮创建一个新的仓库`New repository`。
+- 若将仓库名Repository Name命名为：`[username].github.io`，那么它将是**个人站点**。
+  - 访问地址：https://[username].github.io。  
+- 若仓库名命名不是`[username].github.io`的格式，那么仓库将是**项目站点**。
+  - 比如你命名成 `hellogit`，那么访问地址是：https://[username].github.io/hellogit  
    
-观察上面的2个访问地址，可以发现项目站点的访问地址只是在个人站点链接后增加"/仓库名"拼接的。
+观察上面的2个访问地址，可以发现项目站点的访问地址只是在个人站点链接后增加 `/仓库名` 拼接的。
 
 那么接下来都将以个人站点的仓库作为后续内容的讲述标本。
 
-2. 创建主页文件index.html  
-   我们可以在仓库新建一个文件Create new file，命名为：index.html，这是主页文件。文件内容可以随便填写，比如"Hello world!"，然后点击提交。此时我们在浏览器访问个人站点或项目站点就可以看到这个页面上的内容了。
-   站点地址默认会读index.html/index.md/README.md等文件的内容。
+创建一个主页文件 `index.html`:
+- 在仓库新建一个文件 `Create new file`，命名为：`index.html`。文件内容可以随便填写，比如"Hello world!"，然后点击提交。此时我们在浏览器访问个人站点或项目站点就可以看到这个页面上的内容了。
+
+> 站点地址默认会读项目根目录下 `index.html`,`index.md`,`README.md` 等文件的内容。
 
 ## 步骤2：启用Github pages
 
@@ -38,20 +46,21 @@ GitHub个人站点将为你提供免费域名以供访问。域名格式为：`h
   
 <img src="/notes/assets/pictures/GitHub-Settings-1.png" />
 
-你也可以选择**其它分支**进行部署，这要求你提前新建好分支。比如新建一个`gh-pages`分支。
+其他的部署方式:
+- 你也可以选择**其它分支**进行部署，这要求你提前新建好分支。比如新建一个`gh-pages`分支。
+- **GitHub Actions** 是另外一个可选的部署方式。它可以进行代码的同步和部署，如果你使用GitHub Actions，可以配置触发条件和部署信息。当条件触发时，提交的代码会同步到分支上，然后在分支进行站点的部署和发布。
 
-**GitHub Actions** 是另外一个可选的部署方式。它可以进行代码的同步和部署，如果你使用GitHub Actions，可以配置触发条件和部署信息。当条件触发时，提交的代码会同步到分支上，然后在分支进行站点的部署和发布。
 
-&gt;启用Github Pages会创建仓库的部署。在等待部署期间，GitHub Actions可能需要长达一分钟的时间才能响应，需要耐心等待。  
+> 启用Github Pages会创建仓库的部署。在等待部署期间，GitHub Actions可能需要长达一分钟的时间才能响应，需要耐心等待。  
 注意：在Pages设置的顶部，会出现你的网站链接，复制链接或者点击"Visit Site"按钮可以访问你的GitHub Pages站点。
 
 
 ## 步骤3：定制主题
 
-这里使用GitHub Pages推荐的jekyll主题来定制个人网站的风格。
+这里使用GitHub Pages推荐的**jekyll**主题来定制个人网站的风格。
 
 ### 1.在仓库根目录下新建一个_config.yml文件
-在仓库**Code**菜单中添加一个文件Add file -&gt; Create new file，上方填写文件名`_config.yml`，填写如下内容：
+在仓库**Code**菜单中添加一个文件`Add file -> Create new file`，上方填写文件名`_config.yml`，填写如下内容：
 
 ```yaml
 remote_theme: pages-themes/cayman@v0.2.0 #这里选择你要使用的远程主题
@@ -66,10 +75,10 @@ baseurl: "/"  #项目站点设置为"/仓库名"
 
 Commit提交后保存。
 
-### 2.编写index.md文件，编写主页内容。 
+### 2.编写index.md文件，编写主页内容
 我们之前创建了一个index.html文件，具备前端编程能力的开发者们可以在这里自己定义html内容打造自己专属的主页内容。  
 
-但这里我们用jekyll主题面向非开发者编写主页。将index.html改名为index.md。在原有内容的顶部增加如下代码:  
+但这里我们用jekyll主题面向非开发者编写主页。将`index.html`改名为`index.md`。在原有内容的顶部增加如下代码:  
    
 ```markdown
 ---
@@ -78,12 +87,14 @@ title: 你的主页标题 #输入你的页面标题
 ---
 ```
 
-&gt;jekyll是量行3个分隔符号`---`作为虚线，是**YAML**头信息的识别区域。头信息必须在文件的开始部分，并且需要按照 YAML 的格式写在两行三虚线之间。任何只要包含 YAML 头信息的文件在 Jekyll 中都能被当做一个特殊的文件来处理
+
+> jekyll是量行3个分隔符号`---`作为虚线，是**YAML**头信息的识别区域。  
+> 头信息必须在文件的开始部分，并且需要按照 YAML 的格式写在两行三虚线之间。任何只要包含 YAML 头信息的文件在 Jekyll 中都能被当做一个特殊的文件来处理
 
 ### 3.定制布局。  
 在上述第2点我们引用了`layout: defalut`的布局。这其实是使用的是`_layout`目录下的`default.html`文件。
 
-现在我们创建_layout目录并新建default.html。在仓库新建文件，输入`/_layout/default.html`，这会同时创建目录`_layout`，并新增`default.html`文件，文件内容如下：
+现在我们创建_layout目录并新建`default.html`。在仓库新建文件，输入`/_layout/default.html`，这会同时创建目录`_layout`，并新增`default.html`文件，文件内容如下：
 
 <pre><code>
   &lt;!DOCTYPE html&gt;
@@ -132,14 +143,15 @@ title: 你的主页标题 #输入你的页面标题
 
 这是GitHub Pages **cayman**主题的html模板，直接复制填写即可。有关cayman主题的官方内容请访问：<a href="https://github.com/pages-themes/cayman" target="_blank">https://github.com/pages-themes/cayman</a>。
 
-jeykll目录结构中的`_layouts`目录是存放布局文件的。**default.html**是布局模板中的一种，我们还可以定义page.html, post.html，home.html等页面模板。然后在md文件的头信息中选择使用哪种布局模板。
+jeykll目录结构中的`_layouts`目录是存放布局文件的。`default.html`是布局模板中的一种，我们还可以定义`page.html`, `post.html`, `home.html`等页面模板。然后在md文件的头信息中选择使用哪种布局模板。
 
-为了后续的博客文章编写，我们在定义一个post.html模板。在`_layout`目录下继续新增一个`post.html`文件。内容如下：
+为了后续的博客文章编写，我们在定义一个`post.html`模板。在`_layout`目录下继续新增一个`post.html`文件。内容如下：
 
 <pre><code>
 ---
 layout: default
 ---
+
 &lt;article itemscope itemtype="http://schema.org/BlogPosting"&gt;
 
   &lt;header class="post-header"&gt;
@@ -173,7 +185,9 @@ layout: default
 
 jeykll要求将博客文章放置在`_posts`目录下，目录下的文章文件默认要求`yyyy-MM-dd-title.md`格式命名。
 
-在目标仓库继续新增文件，输入`/_posts/2024-10-31-my-first-post.md`，就可以创建_posts目录，同时创建了一个2024-10-31-my-first-post.md文件，它将是我们的第一篇博客文章。文章内容可随便填写，但主题区域需要一些基本设置：
+在目标仓库继续新增文件，输入`/_posts/2024-10-31-my-first-post.md`，就可以创建_posts目录，同时创建了一个2024-10-31-my-first-post.md文件，它将是我们的第一篇博客文章。
+
+文章内容可随便填写，但主题区域需要一些基本设置：
 
 ```markdown
 ---
@@ -185,11 +199,11 @@ title: 我的第一篇博客
 
 ```
 
-这里，布局使用的是post.html页面模板，title是对你的文章标题。文件提交保存后，其实就可以进行访问了。为了让文章在我们的主页显示出来，需要修改index.md文件。
+这里，布局使用的是`post.html`页面模板，`title`是对你的文章标题。文件提交保存后，其实就可以进行访问了。为了让文章在我们的主页显示出来，需要修改`index.md`文件。
 
 ### 2.主页显示文章
 
-调整我们的index.md内容，填写一代代码：
+调整我们的`index.md`内容，填写一代代码：
 
 <pre><code>
 ---
