@@ -84,7 +84,11 @@ HTML中使用 flexbox 的区域就叫做 **flex 容器**（flex container）。
 </div>
 ```
 
-此时，`<div class="box">`容器中有两个项目，一个是`span`，第二个是`<div class="sub-section">`，它们按照flex进行布局。同时`<div class="sub-section">`也是容器，其中有两个`span`项目，它们按照flex进行布局
+此时，`<div class="box">`容器中有两个项目：
+- 一个是`span`。
+- 第二个是`<div class="sub-section">`。
+
+它们按照flex进行布局。同时`<div class="sub-section">`也是容器，其中有两个`span`项目，它们按照flex进行布局。
 
 *注意，设为 Flex 布局以后，子元素的float、clear和vertical-align属性将失效。*
 
@@ -92,7 +96,7 @@ Flex 容器有两根轴线：
 - 水平的主轴（main axis）
 - 垂直的交叉轴（cross axis）
 
-主轴的起始位置叫起始线，结束位置叫终止线。
+主轴的起始位置叫**起始线**，结束位置叫**终止线**。
 
 主轴由 `flex-direction` 定义，表示main axis的延伸方向，cross axis一直垂直于main axis，故它的延伸方向因 `flex-direction` 的取值不同而不同。我们接下来在说容器的属性时会再次涉及。
 
@@ -120,10 +124,12 @@ Flex 容器有两根轴线：
 
 flex-direction 有4个值：  
 
->- row: 默认值。主轴为水平方向，起点在左端。
->- row-reverse: 主轴为水平方向，起点在右端。
->- column: 主轴为垂直方向，起点在顶部。
->- column-reverse: 主轴为垂直方向，起点在底部。
+|取值|说明|
+|---|---|
+|`row`|默认值。主轴为水平方向，起点在左端|
+|`row-reverse`|主轴为水平方向，起点在右端|
+|`column`|主轴为垂直方向，起点在上沿|
+|`column-reverse`|主轴为垂直方向，起点在下沿|
 
 
 ### 2.flex-wrap
@@ -137,9 +143,11 @@ flex-direction 有4个值：
 
 flex-wrap的枚举如下：
 
->- wrap: 换行，第一行在上方。
->- wrap-reverse: 换行，第一行在下方。
->- nowrap: 不换行。
+|取值|说明|
+|---|---|
+|`wrap`|换行，第一行在上方|
+|`nowrap`|不换行|
+|`wrap-reverse`|换行，第一行在下方|
 
 
 ### 3.flex-flow
@@ -163,11 +171,13 @@ flex-wrap的枚举如下：
 
 它有5个取值。假设 `flex-direction: row` ，主轴为从左往右：
 
-> - flex-start: 默认值，左对齐。
-> - flex-end: 右对齐。
-> - center: 居中。
-> - space-between: 两端对齐，项目之间的间隔都相等。
-> - space-around: 每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。
+|取值|说明|
+|---|---|
+|`flex-start`|默认值，左对齐|
+|`flex-end`|右对齐|
+|`center`|居中|
+|`space-between`|两端对齐，项目之间的间隔都相等|
+|`space-around`|每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍|
 
 
 ### 5.align-items
@@ -182,11 +192,13 @@ flex-wrap的枚举如下：
 
 它有5个取值。假设 `flex-direction: row` ，主轴为从左往右，此时交叉轴便是从上往下：
 
-> - stretch: 默认值，若项目未设置高度或设置auto，将占满整个容器的高度。
-> - flex-start: 与交叉轴的起点对齐。
-> - flex-end: 与交叉轴的终点对齐。
-> - center: 与交叉轴的中点对齐。
-> - baseline: 项目的第一行文字的基线对齐。
+|取值|说明|
+|---|---|
+|`stretch`|默认值，若项目未设置高度或设置auto，将占满整个容器的高度|
+|`flex-start`|与交叉轴的起点对齐|
+|`flex-end`|与交叉轴的终点对齐|
+|`center`|与交叉轴的中点对齐|
+|`baseline`|与项目的第一行文字的基线对齐|
 
 
 ### 6.align-content
@@ -200,12 +212,14 @@ flex-wrap的枚举如下：
 
 它有6个取值：
 
-> - flex-start: 与交叉轴的起点对齐。
-> - flex-end: 与交叉轴的终点对齐。
-> - center: 与交叉轴的中点对齐。
-> - space-between: 与交叉轴两端对齐，轴线之间的间隔平均分布。
-> - space-aroud: 每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。
-> - stretch(默认值): 轴线占满整个交叉轴。
+|取值|说明|
+|---|---|
+|`flex-start`|与交叉轴的起点对齐|
+|`flex-end`|与交叉轴的终点对齐|
+|`center`|与交叉轴的中点对齐|
+|`space-between`|与交叉轴两端对齐，轴线之间的间隔平均分布|
+|`space-around`|每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框之间的间隔大一倍|
+|`stretch`|默认值，轴线占满整个交叉轴|
 
 
 
