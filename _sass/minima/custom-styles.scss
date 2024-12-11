@@ -12,7 +12,7 @@ body {
 .post {
     /* background-color: #fff; */
     border-radius: 5px;
-    padding: 10px 20px;
+    padding: 10px 10px;
 }
 
 .site-header {
@@ -150,5 +150,14 @@ h4,h5{
 
 blockquote{
     font-size: 0.9em;
+}
+
+
+@media screen and (min-width: 1200px){
+    .wrapper {
+        max-width: calc(1200px - 30px * 2);
+        padding-right: 30px;
+        padding-left: 30px;
+    }
 }
 
