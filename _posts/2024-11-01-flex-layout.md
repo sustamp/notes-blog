@@ -101,15 +101,16 @@ Flex 容器有两根轴线：
 主轴由 `flex-direction` 定义，表示main axis的延伸方向，cross axis一直垂直于main axis，故它的延伸方向因 `flex-direction` 的取值不同而不同。我们接下来在说容器的属性时会再次涉及。
 
 ## 容器的属性
-容器有以下6个属性：
+容器（`display: flex`）有以下6个属性：
 
-- `flex-direction` 主轴延伸方向，即项目的排列方向。
-- `flex-wrap` 换行方式
-- `flex-flow` 是 flex-direction 和 flex-wrap 的简写，默认值为 `row nowrap`。
-- `justify-content` 定义项目在主轴上的对齐方式
-- `align-items` 定义项目在交叉轴上的如何对齐
-- `align-content` 当项目有多根轴线时定义对齐方式，只有一根轴线时不起作用。
-
+|属性|用途|
+|---|---|
+|`flex-direction`|主轴延伸方向，即项目的排列方向|
+|`flex-wrap`|换行方式|
+|`flex-flow`|`flex-direction` 和 `flex-wrap` 的简写形式|
+|`justify-content`|主轴上项目之间的对齐方式|
+|`align-items`| 定义项目在交叉轴上的如何对齐|
+|`align-content`| 当项目有多根轴线时定义对齐方式，只有一根轴线时不起作用|
 
 ### 1.flex-direction 
 当你设定：
@@ -122,7 +123,7 @@ Flex 容器有两根轴线：
 
 你的主轴将沿着**水平方向**延伸，此时交叉轴的方向是沿着**上下方向**延伸的。若设定 `flex-direction: column` 时，主轴会沿着页面的上下方向延伸，而交叉轴就变成了水平方向延伸。
 
-flex-direction 有4个值：  
+`flex-direction` 有4个值：  
 
 |取值|说明|
 |---|---|
@@ -141,7 +142,7 @@ flex-direction 有4个值：
 }
 ```
 
-flex-wrap的枚举如下：
+`flex-wrap`的枚举如下：
 
 |取值|说明|
 |---|---|
@@ -224,7 +225,7 @@ flex-wrap的枚举如下：
 
 
 ## 项目的属性
-容器中的 Flex项目 也有6个属性：
+容器中的Flex项目 也有6个属性：
 
 ```css
 .item{
@@ -249,15 +250,15 @@ flex-wrap的枚举如下：
 ### flex-grow
 定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。
 
-如果所有项目的flex-grow属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的flex-grow属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。
+如果所有项目的`flex-grow`属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的`flex-grow`属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。
 
 ### flex-shrink
-flex-shrink定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。
+`flex-shrink`定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。
 
-如果一个项目的flex-shrink属性为0，其他项目都为1，则空间不足时，前者不缩小。
+如果一个项目的`flex-shrink`属性为0，其他项目都为1，则空间不足时，前者不缩小。
 
 ### flex-basis
-flex-basis属性定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小。
+`flex-basis`属性定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为`auto`，即项目的本来大小。
 
 它可以设为跟width或height属性一样的值（比如350px），则项目将占据固定空间。
 
@@ -270,9 +271,9 @@ flex-basis属性定义了在分配多余空间之前，项目占据的主轴空�
 建议优先使用这个属性，而不是单独写三个分离的属性，因为浏览器会推算相关值。
 
 ### align-self
-align-self属性允许单个项目有与其他项目不一样的对齐方式，可覆盖`align-items`属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。
+`align-self`属性允许单个项目有与其他项目不一样的对齐方式，可覆盖`align-items`属性。默认值为`auto`，表示继承父元素的`align-items`属性，如果没有父元素，则等同于`stretch`。
 
-该属性可能取6个值，除了auto，其他都与align-items属性完全一致。
+该属性可能取6个值，除了`auto`，其他都与`align-items`属性完全一致。
 
 
 ## 资料引用
