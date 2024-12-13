@@ -223,9 +223,98 @@ CRM系统包含很多业务操作窗口，在这些窗口中，当一个按钮(B
 
 
 
+
 ## 创建型模式（6）
 
+### 简单工厂模式
+
+#### 定义
+简单工厂模式(Simple Factory Pattern)：
+- 定义一个工厂类，它可以根据参数的不同返回不同类的实例，被创建的实例通常都具有共同的父类。
+
+#### UML类图
+
+![简单工厂模式UML类图](https://sustamp.github.io/assets/pictures/design-patterns/Pattern-Simple-Factory.drawio.png)
+
+#### 结构
+简单工厂模式的结构如下：
+- 工厂类(Factory)：通过参数决定创建哪个具体产品。
+- 产品角色(Product)：抽象类/接口
+- 具体产品(ConcreteProduct)
+
+#### 效果
+优点：
+- 实现了对象创建和使用的分离。工厂类包含必要的判断逻辑，可以决定在什么时候创建哪一个产品类的实例，客户端可以免除直接创建产品对象的职责
+- 无须知道所创建的具体产品类的类名，只需要知道具体产品类所对应的参数即可.
+- 通过引入配置文件，可以在不修改任何客户端代码的情况下更换和增加新的具体产品类，在一定程度上提高了系统的灵活性
+  
+缺点：
+- 简单工厂类集中了`所有产品`的创建逻辑，职责过重，一旦不能正常工作，整个系统都要受到影响。
+- 简单工厂模式由于使用了静态工厂方法，造成工厂角色无法形成基于继承的等级结构。
+- 当系统中需要引入新产品时，这必定要修改工厂类的源代码，将违背“开闭原则”。
+
+如何实现增加新产品而不影响已有代码？工厂方法模式应运而生。
+
 ### 工厂方法模式
+#### 定义
+工厂方法模式(Factory Method Pattern)：
+- 定义一个用于创建对象的接口，让子类决定将哪一个类实例化。
+
+工厂方法模式让一个类的实例化延迟到其子类。
+
+#### UML类图
+
+![工厂模式UML类图](https://sustamp.github.io/assets/pictures/design-patterns/Pattern-Factory.drawio.png)
+
+按照该类图，客户端的使用代码如下：
+
+```java
+public class Client {
+    public static void main(String[] args) {
+        Factory factory;
+        factory = new FactoryA();//可以通过配置文件或其他方式进行实例化
+        //工厂负责创建产品
+        Product product = factory.createProduct();
+        //使用产品
+        product.doSomething();
+    }
+}
+```
+
+在某些情况下，比如业务方法单一时，该类图可以对客户端(Client)的调用进行简化：
+- 隐藏(`private`)工厂 `Factory` 的 `createProduct()` 方法。
+- 包含产品 `Product` 方法`doSomething()`。由具体工厂实现该方法完成具体产品的创建和使用。
+- 客户端直接调用工厂暴露出来的产品方法`doSomething()`。
+
+此时客户端调用代码就变为：
+
+```java
+public class Client {
+    public static void main(String[] args) {
+        Factory factory;
+        factory = new FactoryA();//可以通过配置文件或其他方式进行实例化
+        //使用产品方法
+        factory.doSomething();
+    }
+}
+```
+
+#### 结构
+- 抽象工厂(Factory)：抽象类或接口，定义一个创建对象的接口。
+- 具体工厂(ConcreateFactory)：实现抽象工厂，创建并返回具体产品类的实例。
+- 抽象产品(Product)：抽象类或接口。
+- 具体产品(ConcreateProduct)：实现抽象产品。具体产品由具体工厂创建，二者为一对一关系。
+
+#### 效果
+优点：
+1. 客户端只需要关心产品对应的具体工厂，无需关心创建细节和具体产品类。
+2. 多态性。所有的具体工厂类都具有同一抽象父类，工厂可以自主确定创建何种产品对象。
+3. 加入新产品时，无须修改抽象工厂和抽象产品提供的接口，无须修改其他的具体工厂和具体产品，只要添加新的具体工厂和具体产品，也无须修改客户端。
+
+缺点：
+- 每个工厂只生产一类产品，可能会导致系统中存在大量的工厂类，势必会增加系统的开销。
+
+
 
 ### 单例模式
 
