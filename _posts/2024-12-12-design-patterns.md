@@ -314,6 +314,24 @@ public class Client {
 缺点：
 - 每个工厂只生产一类产品，可能会导致系统中存在大量的工厂类，势必会增加系统的开销。
 
+### 抽象工厂模式
+#### 定义
+抽象工厂模式(Abstract Factory Pattern)：
+- 提供一个创建**一系列**相关或**相互依赖对象**的接口，而无须指定它们具体的类。
+
+抽象工厂模式又称为Kit模式，它是一种对象创建型模式。
+
+#### UML类图
+
+![抽象工厂模式UML类图](https://sustamp.github.io/assets/pictures/design-patterns/Pattern-Abstract-Factory.drawio.png)
+
+
+#### 结构
+
+
+
+#### 效果
+
 
 
 ### 单例模式
