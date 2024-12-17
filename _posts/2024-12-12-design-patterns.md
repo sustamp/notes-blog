@@ -364,6 +364,120 @@ public interface IFactory {
 
 
 ### 单例模式
+为了确保对象的唯一性，我们通常会用单例模式来设计。
+
+#### 定义
+单例模式(Singleton Pattern)的定义：
+- 确保某一个类**只有一个实例**，而且**自行实例化**并向整个系统提供这个实例，这个类称为单例类，它提供**全局访问**的方法。
+
+#### UML类图
+
+![单例模式UML类图](https://sustamp.github.io/assets/pictures/design-patterns/Pattern-Singleton.drawio.png)
+
+#### 结构
+- 单例类Singleton，它的主要内容包括：
+  - 私有的构造函数：`private Singleton()`。
+  - 声明一个单例类Singleton的静态实例:`private static Singleton instance`。
+  - 提供一个静态的工厂方法：`public static Singleton getInstance()`。
+
+
+##### 1.饿汉单例模式
+
+```java
+public class EagerSingleton {
+    private static final EagerSingleton instance = new EagerSingleton();
+    private EagerSingleton() {}
+
+    public static EagerSingleton getInstance() {
+        return instance;
+    }
+    
+}
+```
+
+饿汉式单例类不能实现延迟加载，不管将来用不用始终占据内存。
+
+##### 2.懒汉单例模式
+
+```java
+public class LazySingleton {
+    // volatile修饰的成员变量可以确保多个线程都能够正确处理
+    private volatile static LazySingleton instance = null;
+    private LazySingleton() {}
+
+    public static LazySingleton getInstance() {
+        // 使用双重检查判定锁DCL(Double-Check Locking)
+        if (instance == null) {
+            synchronized (LazySingleton.class) {
+                if (instance == null) {
+                    instance = new LazySingleton();
+                }
+            }
+        }
+        return instance;
+    }
+}
+
+```
+
+懒汉式单例类线程安全控制烦琐，而且性能受影响。
+
+> 思考：为什么要加上 `volatile` 关键字?
+
+`instance = new LazySingleton();` 不是一个原子操作。在JVM中，这条语句至少做了3件事：
+1. 给Singleton的实例分配内存空间；
+2. 调用Singleton()的构造函数，初始化成员字段；
+3. 将singleton指向分配的内存空间(此时singleton就不是null了)
+   
+
+因为存在着指令重排序的优化，第2、3步的顺序是不能保证的，最后的执行顺序可能是1-2-3，也可能是1-3-2。
+
+假如执行顺序是1-3-2时，`singleton!=null`，但没有初始化，其他线程判断通过直接返回instance并使用会因为没有初始化而报错。这就是**DCL失效**的问题，这种问题难以跟踪难以重现可能会隐藏很久。
+
+JDK1.5之后，SUN官方调整了JVM，具体化了 `volatile` 关键字，就可以保证每次从主存中读取（这涉及到CPU缓存一致性问题），也可以**防止指令重排序**的发生，避免拿到未完成初始化的对象。
+
+##### 3.使用静态内部类的单例模式
+
+使用Initialization Demand Holder (IoDH)的技术能够将上述两种模式的有点合二为一，可以实现延迟加载，又可以保证线程安全，不影响系统性能。
+
+```java
+public class Singleton{
+    private singleton() {}
+
+    // 定义单例类的静态内部类Holder
+    // 然后在静态类部内创建单例对象，这样使得类的初始化延迟到子类中
+    private static class SingletonHolder{
+        private final static Singleton instance = new Singleton();
+    }
+
+    public static Singleton getInstance(){
+        return SingletonHolder.instance;
+    }
+
+}
+```
+
+##### 4.使用枚举的单例模式
+
+```java
+public enum Singleton {
+    INSTANCE;
+}
+```
+
+使用枚举实现单例模式，代码简洁，同时实现懒加载和线程安全，也不会在序列化或反射时被破坏。
+
+#### 效果
+优点：
+- 唯一实例的受控访问，线程安全。
+- 节约系统资源。系统内存中只存在一个对象，一些需要频繁创建和销毁的对象无疑可以提高系统的性能。
+- 实例数目可控。使用与单例控制相似的方法来获得指定个数的对象实例，既节省系统资源，又解决了单例单例对象共享过多有损性能的问题。
+
+缺点：
+- 没有抽象层，单例类拓展困难。
+- 单例类的职责过重，在一定程度上违背了**单一职责原则**。单例类既充当了工厂角色，提供了工厂方法，同时又充当了产品角色，包含一些业务方法，将产品的创建和产品的本身的功能融合到一起。
+
+
 
 ## 结构型模式（7）
 
