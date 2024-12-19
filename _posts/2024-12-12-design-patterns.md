@@ -670,21 +670,107 @@ public class CopyUtils {
 
 > 习题：开发一个简单的股票监控应用程序，要求：当股票购买者所购买的某支股票价格发生变化时，该股票的所有股民都将收到通知（包括新价格）。
 
+习题实现代码：
 ```java
-//主题
-public class Stock {
-    private BigDecimal price;
-    private List<StockBuyer> buyers = Lists.newArrayList();
+//抽象主题(被观察者)：股票抽象类
+public abstract class Stock {
+    protected BigDecimal price = new BigDecimal("1");//初始1块钱
 
-    public BigDecimal getPrice() {return this.price;}
-    public BigDecimal setPrice(BigDecimal price) {this.price = price;}
+    protected List<StockBuyer> buyers = Lists.newArrayList();
+
+    // 由子类具体实现，并调用notifyBuyers方法
+    public abstract void setPrice(BigDecimal price);
 
     public synchronized void addBuyer(StockBuyer buyer) {
-        
+        if (!buyers.contains(buyer)){
+            buyers.add(buyer);
+        }
     }
 
+    public synchronized void removeBuyer(StockBuyer buyer) {
+        buyers.remove(buyer);
+    }
+
+    public void notifyBuyers(Object arg) {
+        for (StockBuyer buyer : buyers) {
+            buyer.receive(arg);
+        }
+    }
 
 }
+
+//具体主题(被观察者)：腾讯股票
+public class TxStock extends Stock {
+
+    public BigDecimal getPrice() {
+        return this.price;
+    }
+
+    //具体主题实现价格变化时，通知股民
+    @Override
+    public void setPrice(BigDecimal price) {
+        BigDecimal oldPrice = getPrice();
+        BigDecimal growth =  price.subtract(oldPrice).multiply(new BigDecimal("100")).divide(oldPrice,2, RoundingMode.HALF_DOWN);
+        this.price = price;
+        //当涨幅低于0或者涨幅大于1%时，通知所有股民
+        if(growth.compareTo(BigDecimal.ZERO) < 0 || growth.compareTo(new BigDecimal("0.01")) >= 0){
+            String message = MessageFormat.format("之前价格：{0}，最新价格：{1}，涨幅:{2}", oldPrice.toString(), price.toString(), growth + "%");
+            notifyBuyers(message);
+        }
+
+    }
+}
+
+//抽象观察者：股民抽象类
+public interface IStockBuyer {
+    void receive(Object arg);
+}
+
+//具体观察者：股民
+public class StockBuyer implements IStockBuyer {
+
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public StockBuyer(String name){
+        this.name = name;
+    }
+
+    @Override
+    public void receive(Object arg) {
+        System.out.println(this.name + "收到股票信息：" + arg);
+    }
+}
+
+//测试代码
+public class Client{
+    public static void main(String[] args) {
+        //股民
+        StockBuyer zhangsan = new StockBuyer("张三");
+        StockBuyer lisi = new StockBuyer("李四");
+        StockBuyer wangwu = new StockBuyer("王五");
+
+        //股票
+        TxStock txStock = new TxStock();
+        //股票被股民购买
+        txStock.addBuyer(zhangsan);
+        txStock.addBuyer(lisi);
+        txStock.addBuyer(wangwu);
+        //价格发生变化
+        txStock.setPrice(new BigDecimal(1000));
+        txStock.setPrice(new BigDecimal(1010));
+        txStock.setPrice(new BigDecimal(998));
+        txStock.removeBuyer(wangwu);//王五抛售不跟了
+        txStock.setPrice(new BigDecimal(1000));
+        txStock.setPrice(new BigDecimal(1001));
+        txStock.setPrice(new BigDecimal(1005));
+        txStock.setPrice(new BigDecimal(1201));
+    }
+}
+
 ```
 
 
