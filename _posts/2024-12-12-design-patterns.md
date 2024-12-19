@@ -630,7 +630,7 @@ public class CopyUtils {
 
 发布订阅模式UML类图：
 
-![发布订阅模式UML类图](https://sustamp.github.io/assets/pictures/design-patterns/Pattern-Publish-Subscribe.png)
+![发布订阅模式UML类图](https://sustamp.github.io/assets/pictures/design-patterns/Pattern-Publish-Subscribe.drawio.png)
 
 #### 结构
 观察者模式的基本结构是：
@@ -660,9 +660,32 @@ public class CopyUtils {
 - **循环依赖**：观察者在更新时又触发了被观察者的状态变化，导致无限循环，可能导致系统崩溃。
 - **依赖关系复杂化**：每个被观察者都需要维护一个观察者的列表，并在状态改变时通知所有观察者。
 
+##### 应用场景
+1. 观察者模式
+   - 读者关注感兴趣的作者，当作者发布新作品时能收到通知。
+   
+2. 发布订阅模式。
+   - 系统可能根据业务会向不同的消息中间件(ibmmq/activemq/kafaka)发送消息，子系统订阅该消息中间件时可收到消息。
+   - 系统可能有不同的业务信息生产者，比如订单信息生产者，支付信息生产者，物流信息生产者等，不同的子系统对接不同的生产者完成对应的后续功能。
+
 > 习题：开发一个简单的股票监控应用程序，要求：当股票购买者所购买的某支股票价格发生变化时，该股票的所有股民都将收到通知（包括新价格）。
 
+```java
+//主题
+public class Stock {
+    private BigDecimal price;
+    private List<StockBuyer> buyers = Lists.newArrayList();
 
+    public BigDecimal getPrice() {return this.price;}
+    public BigDecimal setPrice(BigDecimal price) {this.price = price;}
+
+    public synchronized void addBuyer(StockBuyer buyer) {
+        
+    }
+
+
+}
+```
 
 
 ## 资料引用
