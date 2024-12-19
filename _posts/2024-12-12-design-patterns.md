@@ -545,12 +545,42 @@ public class CopyUtils {
 适配器模式-不兼容结构的协调。
 
 #### 定义
+适配器模式(Adapter Pattern)：
+- 将一个接口转换成客户希望的另一个接口，使接口不兼容的那些类可以一起工作。
+  
+适配器模式别名为包装器(Wrapper)，有两种实现类型：
+- 类适配器模式：**类结构型**模式，适配器与适配者之间是继承（或实现）关系。
+- 对象适配器模式：**对象结构型**模式。适配器与适配者之间是关联关系。
+
+在实际开发中，对象适配器的使用频率更高。
+
+类适配器的使用受到很多限制：
+- Java、C#等语言不支持多重类继承。目标抽象类Target不是接口，而是一个类，就无法使用类适配器。
+- 适配者Adapter为最终(Final)类，也无法使用类适配器。
 
 #### UML类图
 
+![适配器模式UML类图](https://sustamp.github.io/assets/pictures/design-patterns/Pattern-Adapter.drawio.png)
+
+> 思考1：在对象适配器中，一个适配器能否适配多个适配者？如果能，应该如何实现？如果不能，请说明原因。  
+> 思考2：在类适配器中，一个适配器能否适配多个适配者？如果能，应该如何实现？如果不能，请说明原因。
+
 #### 结构
+- **目标(Target)**：定义客户所需的目标和结构。可以是`接口`，`抽象类`或`具体类`。
+- **适配器(Adapter)**: 作为转换器，调用`适配者`的接口或方法，将其结果和结构转换成符合`目标`的接口和结构。
+- **被适配者(Adaptee)**：已经存在的对象。它本身具备已经定义好的接口和结构，但因为与`目标`期望结构不符，所以要被`适配器`适配，转换结果。
+
 
 #### 效果
+优点：
+- 解耦：适配器模式将`目标`和`适配者`解耦，引入`适配器`来重用现有的`适配者`，无须修改原有结构。
+- 增加了类的透明性和复用性：业务实现过程封装在`适配器`中，对客户端是透明的，且`适配者`不需改动，提高了复用性，可以被不同的系统或模块使用。
+- 拓展性好：增加和更换适配器不需要修改原有代码。完全符合**开闭原则**。
+- 一个对象适配器可以把多个不同的适配者适配到同一个目标。
+
+缺点：
+- 在适配器中更换适配者的某些方法会比较麻烦。
+  - 可以先做一个适配者类的子类，将适配者类的方法置换掉，然后再把适配者类的子类当做真正的适配者进行适配，实现过程较为复杂。
 
 
 ### 组合模式
@@ -663,6 +693,10 @@ public class CopyUtils {
 ##### 应用场景
 1. 观察者模式
    - 读者关注感兴趣的作者，当作者发布新作品时能收到通知。
+   - 当前流行的MVC(Model-View-Controller)架构中也应用了观察者模式：
+     - 模型(Model)：对应于观察目标。
+     - 视图(View)：对应于观察者。
+     - 控制器(Controller)。充当两者之间的中介者。当模型层的数据发生改变时，视图层将自动改变其显示内容
    
 2. 发布订阅模式。
    - 系统可能根据业务会向不同的消息中间件(ibmmq/activemq/kafaka)发送消息，子系统订阅该消息中间件时可收到消息。
@@ -671,6 +705,7 @@ public class CopyUtils {
 > 习题：开发一个简单的股票监控应用程序，要求：当股票购买者所购买的某支股票价格发生变化时，该股票的所有股民都将收到通知（包括新价格）。
 
 习题实现代码：
+
 ```java
 //抽象主题(被观察者)：股票抽象类
 public abstract class Stock {
@@ -696,7 +731,6 @@ public abstract class Stock {
             buyer.receive(arg);
         }
     }
-
 }
 
 //具体主题(被观察者)：腾讯股票
@@ -717,7 +751,6 @@ public class TxStock extends Stock {
             String message = MessageFormat.format("之前价格：{0}，最新价格：{1}，涨幅:{2}", oldPrice.toString(), price.toString(), growth + "%");
             notifyBuyers(message);
         }
-
     }
 }
 
@@ -752,25 +785,24 @@ public class Client{
         StockBuyer zhangsan = new StockBuyer("张三");
         StockBuyer lisi = new StockBuyer("李四");
         StockBuyer wangwu = new StockBuyer("王五");
-
         //股票
-        TxStock txStock = new TxStock();
+        Stock txStock = new TxStock();
         //股票被股民购买
         txStock.addBuyer(zhangsan);
         txStock.addBuyer(lisi);
         txStock.addBuyer(wangwu);
         //价格发生变化
-        txStock.setPrice(new BigDecimal(1000));
-        txStock.setPrice(new BigDecimal(1010));
-        txStock.setPrice(new BigDecimal(998));
-        txStock.removeBuyer(wangwu);//王五抛售不跟了
-        txStock.setPrice(new BigDecimal(1000));
-        txStock.setPrice(new BigDecimal(1001));
-        txStock.setPrice(new BigDecimal(1005));
-        txStock.setPrice(new BigDecimal(1201));
+        txStock.setPrice(new BigDecimal(50));
+        txStock.setPrice(new BigDecimal(51));
+        txStock.setPrice(new BigDecimal(38));
+        txStock.removeBuyer(wangwu);//不跟了
+        txStock.setPrice(new BigDecimal(50));
+        txStock.setPrice(new BigDecimal(52));
+        txStock.setPrice(new BigDecimal(55));
+        txStock.setPrice(new BigDecimal(55.5));
+        txStock.setPrice(new BigDecimal(56.5));
     }
 }
-
 ```
 
 
