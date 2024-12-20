@@ -327,9 +327,29 @@ public interface IFactory {
 ### 抽象工厂模式
 #### 定义
 抽象工厂模式(Abstract Factory Pattern)：
-- 提供一个**创建一系列**相关或相互依赖**对象**的接口，而无须指定它们具体的类。
+- 提供一个**创建一系列**相关或相互依赖**对象**的接口，而**无须指定**它们**具体的类**。
 
 抽象工厂模式又称为Kit模式，它是一种对象创建型模式。
+
+这里要引入2个概念：
+
+![产品等级结构示意图](https://sustamp.github.io/assets/pictures/design-patterns/diagram-product-hierarchy.png)
+
+- 产品等级结构：抽象产品和具体产品之间的**继承关系**，具体产品的风格各不相同。
+- 产品族：**一组**相关或相互依赖的**产品**，这些产品具备**同一种风格**，可以协同工作。
+
+
+示例：
+- 产品族：
+  - Windows组件库：WindowsButton、WindowsTextBox、WindowsLabel
+  - 海尔产品族：海尔空调、海尔冰箱、海尔洗衣机。
+  - 美的产品族：美的产品族：美的空调、美的冰箱、美的洗衣机。
+- 产品等级结构：
+  - 空调：格力空调、美的空调
+  - 冰箱：海尔冰箱、美的冰箱
+  - Button：WindowsButton、MacButton
+  - TextBox：WindowsTextBox、MacTextBox
+
 
 #### UML类图
 
@@ -337,16 +357,16 @@ public interface IFactory {
 
 
 #### 结构
-- 抽象工厂：声明一组用于创建一系列产品结构的方法，每一个方法对应一个的产品结构。
-- 具体工厂：具体实现抽象工厂，生成一系列相同风格的具体产品。
-- 抽象产品：每一个产品结构都是一个抽象类或接口，并声明产品所具有的业务方法。
-- 具体产品：实现对应产品结构的业务方法。
+- 抽象工厂：声明一组用于创建一系列产品对象（产品族）的方法，每一个方法对应一个产品。
+- 具体工厂：负责创建同一风格的一系列产品（产品族）。
+- 抽象产品：产品族中一种产品，并声明产品所具有的业务方法。
+- 具体产品：这种结构的产品的一种具体实现。
+
 
 与工厂方法模式一样，抽象工厂模式也可为每一种产品提供一组重载的工厂方法，以不同的方式对产品对象进行创建。
 
 #### 效果
-抽象工厂的应用场景是：
-- 产品结构要稳定，设计完成之后，不会向系统中增加新的产品等级结构或者删除已有的产品等级结构。
+抽象工厂的应用前提一般需要产品结构要稳定，设计完成之后，不会向系统中增加新的产品等级结构或者删除已有的产品等级结构。
 
 因为当要增加一个新的产品结构 `IProductC` 时：
 - 由于抽象工厂类 `IFactory` 目前没有 `createProductC()` 的方法，所以势必要修改抽象工厂的代码；
@@ -359,8 +379,234 @@ public interface IFactory {
 - 当要增加新的产品结构时，会违反**开闭原则**。
   
 优点：
-- 对已有产品结构的进行产品风格的新增和拓展很方便，只需增加新的具体产品和对应的具体工厂即可，此时无需修改系统已有代码（Client通过配置文件配置具体工厂不算修改代码），符合**开闭原则**。
+- **易于拓展**：只需增加新的具体产品和对应的具体工厂即可，此时无需修改系统已有代码（配置文件调整具体工厂不算修改代码）。符合**开闭原则**。
 - 当一个产品族中的多个对象被设计成一起工作时，它能够保证客户端始终只使用风格相同的同一个具体工厂所生产的对象。
+- **高内聚、低耦合**：通过抽象工厂模式，客户端代码与具体的库实现解耦，只需要依赖抽象工厂和抽象产品。
+
+##### 使用场景
+- 当需要创建一系列相关的产品族时。
+- 确保客户端始终使用风格相同的对象集。
+
+##### 案例：不同数据库的切换和DAO的使用
+假设我当前的业务系统是连接Oracle，Dao层的sql是针对oracle的语法编写的。而现在业务需要节约成本，使用数据库mysql作为业务库。那么业务系统可以使用何种设计模式可以避免对现有代码的更改，而又能让业务系统能针对不同数据库进行编程？
+
+分析：
+- 分析需求，我们存在一组不同的Dao对象的产品族。
+  - `UserDao`：用于操作用户表的DAO对象，业务方法有：创建用户，查询用户。
+  - `OrderDao`：操作订单表的DAO对象，业务方法有：创建订单，查询订单。
+- 不同的数据库对它们的实现各不相同，因而形成了产品等级结构：
+  - `UserDao`：`OracleUserDao`、`MysqlUserDao`。
+  - `OrderDao`：`OracleOrderDao`、`MysqlOrderDao`。
+
+这里我们采用**抽象工厂模式**进行改造，该模式可以提供创建一组的**DAO对象**的接口，而无须指定它们具体的实现类。
+
+设计思路：
+1. 设计抽象产品：每个Dao对象都是一个抽象产品：
+   - `UserDao`
+   - `OrderDao`
+2. 定义具体产品：按照需求，我们现在有两种数据库类型，不同的数据库是不同风格的DAO产品：
+   - `OracleUserDao`
+   - `MysqlUserDao`
+   - `OracleOrderDao`
+   - `MysqlOrderDao`
+3. 定义抽象工厂：`DaoFactory`，声明创建抽象Dao对象的接口：
+   - `createUserDao()`
+   - `createOrderDao()`
+4. 实现具体工厂类：每种数据库对应具体的工厂类，负责创建该数据库风格的具体Dao产品。
+   - `OracleDaoFactory`：实现`createUserDao()`返回`OracleUserDao`，实现`createOrderDao()`返回`OracleNewsDao`。
+   - `MysqlDaoFactory`：创建`MysqlUserDao`、`MysqlNewsDao`。
+
+客户端只需依赖抽象工厂和抽象产品的接口编程，无需关心具体的实现类。具体工厂负责获取到具体的Dao对象，从而实现对不同数据库的编程。
+
+通过抽象工厂模式，未来要添加新的数据库支持时，无需修改现有代码，只需要添加新的具体工厂和具体Dao类即可，易于拓展，且无须修改现有代码，符合开闭原则。
+
+定义抽象工厂和具体工厂：
+
+```java
+//抽象工厂
+public interface DaoFactory {
+    UserDao createUserDao();
+    OrderDao createOrderDao();
+}
+
+//具体工厂
+public class OracleDaoFactory implements DaoFactory {
+    @Override
+    public UserDao createUserDao() {
+        return new OracleUserDao();
+    }
+
+    @Override
+    public OrderDao createOrderDao() {
+        return new OracleOrderDao();
+    }
+}
+
+public class MysqlDaoFactory implements DaoFactory {
+
+    @Override
+    public UserDao createUserDao() {
+        return new MysqlUserDao();
+    }
+
+    @Override
+    public OrderDao createOrderDao() {
+        return new MysqlOrderDao();
+    }
+}
+```
+
+定义抽象产品和具体产品：
+
+```java
+//抽象产品：UserDao
+public interface UserDao {
+    String addUser();
+    Object queryUser();
+}
+//抽象产品：OrderDao
+public interface OrderDao {
+    String createOrder();
+    Object queryOrder();
+}
+
+//具体产品：Oracle实现
+public class OracleOrderDao implements OrderDao {
+
+    @Override
+    public String createOrder() {
+        System.out.println("使用oracle的sql语句创建订单");
+        return "订单号";
+    }
+
+    @Override
+    public Object queryOrder() {
+        System.out.println("使用oracle的sql语句查询订单");
+        return "查到的订单";
+    }
+}
+
+public class OracleUserDao implements UserDao {
+
+    @Override
+    public String addUser() {
+        System.out.println("使用oracle的sql语句添加用户");
+        return "用户id";
+    }
+
+    @Override
+    public Object queryUser() {
+        System.out.println("使用oracle的sql语句查询用户");
+        return "查到的用户";
+    }
+}
+
+//具体产品：Mysql实现
+public class MysqlOrderDao implements OrderDao {
+    @Override
+    public String createOrder() {
+        System.out.println("使用mysql的sql语句创建订单");
+        return "订单号";
+    }
+
+    @Override
+    public Object queryOrder() {
+        System.out.println("使用mysql的sql语句查询订单");
+        return "查到的订单";
+    }
+}
+
+public class MysqlUserDao implements UserDao {
+    @Override
+    public String addUser() {
+        System.out.println("使用mysql的sql语句添加用户");
+        return "用户id";
+    }
+
+    @Override
+    public Object queryUser() {
+        System.out.println("使用mysql的sql语句查询用户");
+        return "查到的用户";
+    }
+}
+```
+
+测试代码：
+
+```java
+class client{
+    public static void main(String[] args) {
+        DaoFactory daoFactory = new MysqlDaoFactory();//模拟使用配置文件或反射初始化工厂对象
+		//创建相关数据库操作对象Dao
+		UserDao userDao = daoFactory.createUserDao();
+		OrderDao orderDao = daoFactory.createOrderDao();
+
+		userDao.addUser();
+		orderDao.createOrder();
+		orderDao.queryOrder();
+    }
+}
+```
+
+输出：
+
+```
+使用mysql的sql语句添加用户
+使用mysql的sql语句创建订单
+使用mysql的sql语句查询订单
+```
+
+
+>思考：支持新的数据库类型时符合开闭原则，但Dao层的对象是会随着业务迭代而需要新增的，这时候就不符合开闭原则，要怎么处理？
+
+当随着业务迭代需要新增一个`newDao`时，抽象工厂和具体工厂都需要增加创建`newDao`的代码，这势必违背开闭原则，要怎么处理呢？
+
+我们知道，工厂模式的诞生是为了将对象创建和使用分离的，抽象工厂模式承担着对象创建的责任。随着技术发展，我们可以利用Spring框架提供的DI(依赖注入)等机制来替代抽象工厂来完成对象的创建和注入，这样可以避免违背开闭原则。
+
+改进思路：
+- 配置文件添加一个属性`database.type`来指定数据库类型。
+- 利用Spring的依赖注入和条件注入给`Dao`打上注解：
+  - `@Repository`
+  - `@ConditoinalOnProperty`
+
+实现代码：
+
+配置文件：
+
+```
+# application.properties
+database.type=mysql
+```
+
+
+```java
+@Repository
+@ConditionalOnProperty(name = "database.type", havingValue = "mysql")
+public class MysqlUserDao implements UserDao {
+    //接口代码省略...
+}
+
+@Repository
+@ConditionalOnProperty(name = "database.type", havingValue = "oracle")
+public class OracleUserDao implements UserDao {
+    //接口代码省略...
+}
+
+@Repository
+@ConditionalOnProperty(name = "database.type", havingValue = "mysql")
+public class MysqlOrderDao implements OrderDao {
+    //接口代码省略...
+}
+
+@Repository
+@ConditionalOnProperty(name = "database.type", havingValue = "mysql")
+public class MysqlUserDao implements UserDao {
+    //接口代码省略...
+}
+
+```
+
+
 
 
 ### 单例模式
