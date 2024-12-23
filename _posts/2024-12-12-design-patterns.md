@@ -224,7 +224,7 @@ CRM系统包含很多业务操作窗口，在这些窗口中，当一个按钮(B
 
 
 
-## 创建型模式（6）
+## 创建型模式
 
 ### 简单工厂模式
 
@@ -559,22 +559,19 @@ class client{
 
 >思考：支持新的数据库类型时符合开闭原则，但Dao层的对象是会随着业务迭代而需要新增的，这时候就不符合开闭原则，要怎么处理？
 
-当随着业务迭代需要新增一个`newDao`时，抽象工厂和具体工厂都需要增加创建`newDao`的代码，这势必违背开闭原则，要怎么处理呢？
 
-我们知道，工厂模式的诞生是为了将对象创建和使用分离的，抽象工厂模式承担着对象创建的责任。随着技术发展，我们可以利用Spring框架提供的DI(依赖注入)等机制来替代抽象工厂来完成对象的创建和注入，这样可以避免违背开闭原则。
+工厂模式的引入将对象的创建和使用分离，抽象工厂模式承担着对象创建的责任。我们可以利用Spring框架提供的DI(依赖注入)等机制来替代抽象工厂来完成对象的创建和注入，这样可以就避免违背开闭原则。
 
 改进思路：
-- 配置文件添加一个属性`database.type`来指定数据库类型。
-- 利用Spring的依赖注入和条件注入给`Dao`打上注解：
+- 在配置文件中添加一个`database.type`属性来指定数据库类型。
+- 利用Spring的依赖注入和条件注入给`Dao`打上注解，代替`DaoFactory`的功能：
   - `@Repository`
   - `@ConditoinalOnProperty`
 
 实现代码：
 
-配置文件：
-
 ```
-# application.properties
+# 配置文件application.properties
 database.type=mysql
 ```
 
@@ -598,14 +595,24 @@ public class MysqlOrderDao implements OrderDao {
     //接口代码省略...
 }
 
-@Repository
-@ConditionalOnProperty(name = "database.type", havingValue = "mysql")
-public class MysqlUserDao implements UserDao {
-    //接口代码省略...
+
+//测试代码
+class client{
+    public static void main(String[] args) {
+        // DaoFactory daoFactory = new MysqlDaoFactory();//模拟使用配置文件或反射初始化工厂对象
+		//创建相关数据库操作对象Dao
+		// UserDao userDao = daoFactory.createUserDao();
+		// OrderDao orderDao = daoFactory.createOrderDao();
+        UserDao userDao = ApplicationContextUtils.getBean(UserDao.class);
+        OrderDao orderDao = ApplicationContextUtils.getBean(OrderDao.class);
+
+		userDao.addUser();
+		orderDao.createOrder();
+		orderDao.queryOrder();
+    }
 }
 
 ```
-
 
 
 
@@ -785,7 +792,7 @@ public class CopyUtils {
 
 
 
-## 结构型模式（7）
+## 结构型模式
 
 ### 适配器模式
 适配器模式-不兼容结构的协调。
@@ -841,7 +848,7 @@ public class CopyUtils {
 
 
 
-## 行为性模式（11）
+## 行为性模式
 ### 策略模式
 策略模式-算法的封装与切换
 
