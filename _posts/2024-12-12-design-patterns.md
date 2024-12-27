@@ -243,6 +243,7 @@ CRM系统包含很多业务操作窗口，在这些窗口中，当一个按钮(B
 - 具体产品(ConcreteProduct)
 
 #### 效果
+
 优点：
 - 实现了对象创建和使用的分离。工厂类包含必要的判断逻辑，可以决定在什么时候创建哪一个产品类的实例，客户端可以免除直接创建产品对象的职责
 - 无须知道所创建的具体产品类的类名，只需要知道具体产品类所对应的参数即可.
@@ -253,9 +254,18 @@ CRM系统包含很多业务操作窗口，在这些窗口中，当一个按钮(B
 - 简单工厂模式由于使用了静态工厂方法，造成工厂角色无法形成基于继承的等级结构。
 - 当系统中需要引入新产品时，这必定要修改工厂类的源代码，将违背“开闭原则”。
 
-如何实现增加新产品而不影响已有代码？工厂方法模式应运而生。
+##### 具体应用
+- Spring的BeanFactory和ApplicationContext就是简单工厂模式来创建Bean实例。
+
+```java
+ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+MyService myService = context.getBean(MyService.class);
+```
+
 
 ### 工厂方法模式
+简单工厂模式在引入新产品时势必要修改工厂类的源码，如何实现增加新产品而不影响已有代码？工厂方法模式应运而生。
+
 #### 定义
 工厂方法模式(Factory Method Pattern)：
 - 定义一个用于创建对象的接口，让子类决定将哪一个类实例化。
@@ -266,7 +276,7 @@ CRM系统包含很多业务操作窗口，在这些窗口中，当一个按钮(B
 
 ![工厂模式UML类图](https://sustamp.github.io/assets/pictures/design-patterns/Pattern-Factory.drawio.png)
 
-按照该类图，客户端的使用代码如下：
+客户端的调用代码如下：
 
 ```java
 public class Client {
@@ -323,6 +333,9 @@ public interface IFactory {
 
 缺点：
 - 每个工厂只生产一类产品，可能会导致系统中存在大量的工厂类，势必会增加系统的开销。
+
+##### 具体应用
+- Spring的`FactoryBean`或继承`AbstractFactoryBean`。
 
 ### 抽象工厂模式
 #### 定义
@@ -557,22 +570,26 @@ class client{
 ```
 
 
->思考：支持新的数据库类型时符合开闭原则，但Dao层的对象是会随着业务迭代而需要新增的，这时候就不符合开闭原则，要怎么处理？
+>思考：  
+这个方案存在一个严重问题：虽然添加新的数据库类型时符合开闭原则并保证语法一致，但Dao层的对象是会随着业务迭代而需要新增的，这时候就不符合开闭原则，要怎么处理？
 
+**解决方案1：利用Spring框架提供的依赖注入(DI)**
 
-工厂模式的引入将对象的创建和使用分离，抽象工厂模式承担着对象创建的责任。我们可以利用Spring框架提供的DI(依赖注入)等机制来替代抽象工厂来完成对象的创建和注入，这样可以就避免违背开闭原则。
+使用Spring的依赖注入来代替工厂模式完成对Dao对象的创建和注入，并根据`条件注入`的方式决定注入哪个Dao对象的具体实现类，这样可以就避免违背开闭原则。
 
 改进思路：
-- 在配置文件中添加一个`database.type`属性来指定数据库类型。
-- 利用Spring的依赖注入和条件注入给`Dao`打上注解，代替`DaoFactory`的功能：
-  - `@Repository`
-  - `@ConditoinalOnProperty`
+- 在配置文件中添加一个配置属性`database.type`，其值决定数据库类型：
+  - 比如：`database.type=dbType` 指定数据库为mysql。
+- 给`Dao`的每个具体实现类打以下上注解，由Spring代替`DaoFactory`完成对象的创建和注入：
+  - `@Repository`：表明该类作为一个组件，能够被Spring自动扫描和实例化为Bean，纳入Spring容器管理
+  - `@ConditoinalOnProperty`：表明这个类是条件注解，根据配置的属性值来决定是否加载某个 Bean 或者配置类。
 
 实现代码：
 
 ```
 # 配置文件application.properties
-database.type=mysql
+# 指定数据库为mysql
+database.type=mysql 
 ```
 
 
@@ -881,6 +898,9 @@ java的jdbc的驱动程序就是桥接模式的典型应用：
 - 需要经验积累：识别和建立系统中某两个独立变化的维度需要一定的经验。
 
 
+> 思考： 桥接模式与策略模式有什么区别？
+
+
 ### 代理模式
 代理模式-真实对象的代理访问
 
@@ -944,6 +964,73 @@ java的jdbc的驱动程序就是桥接模式的典型应用：
 - 通过代理对象访问真实对象，一定程度上会降低请求的处理速度。
 - 代理模式通常会做其他额外功能，会增加一定的维护程度。
 
+##### 具体应用
+- SpringAop的切面编程主要使用了代理模式，来实现方法的拦截和增强功能，并不需要知道方法的细节。
+
+### 装饰器模式
+装饰器模式-动态拓展系统功能
+
+#### 定义
+装饰器模式(Decorator Pattern)定义：
+- 在**不改变现有对象结构**的情况下，动态地给一个对象增加一些额外的职责，就增加对象功能来说，装饰模式比生成子类实现更为灵活。
+
+装饰器模式是一种对象结构型模式。
+
+#### UML类图
+
+![装饰模式UML类图](https://sustamp.github.io/assets/pictures/design-patterns/Pattern-Decorator.drawio.png)
+
+
+客户端的调用代码：
+
+```java
+class client {
+    public static void main(String[] args) {
+        Component component = new ConcreteComponent();
+        Component decorator = new ConcreteDecoratorB(component);
+
+        decorator.operation();
+    }
+}
+```
+
+
+
+#### 结构
+- **抽象构件**：
+  - 作为`具体构件`和`抽象装饰类`的共同**父类**，可以是`接口`或`抽象类`。声明具体构件的业务接口，使客户端能一致处理未被装饰和装饰之后的对象。
+- **具体构件**：`抽象构件`子类，具体实现的业务。
+- **抽象装饰类**：`抽象构件`子类，维护一个指向`抽象构件`的引用来调用构件的方法。
+- **具体装饰类**：`抽象装饰类`的子类，装饰构件，添加新的功能。
+
+
+#### 效果
+优点：
+- 比采用继承方式拓展功能更为灵活
+- 可以设计不同的装饰类，创造出不同行为的组合。
+- 具体构件类和具体装饰类可以独立变化，符合开闭原则。
+
+缺点：
+- 装饰类会产生许多小对象，过渡使用会增加系统的复杂度。
+- 如果装饰对象过多或过于复杂，排查问题需要逐级排查，较为繁琐，还可能会导致代码难以维护。
+  
+
+
+> 思考： 代理模式也能增加对象的额外功能，装饰模式与代理模式有什么区别？
+
+- 代理模式是全权代理，真实对象不对外展示
+- 装饰模式只是起到增强的作用，被装饰的类仍然可以对外提供服务。
+
+##### 具体应用
+- Spring框架中有不少地方使用了装饰器模式：
+  - 含有`-Wrapper`或`-Decorator`后缀的类，比如：`HttpServletRequestWrapper`。
+  - `BeanPostProcessor`:对Bean实例进行增强。
+  - `HandlerInterceptor`：对拦截器的增强。
+  - 
+- jdk的`InputStream`类下的`FileInputStream`、`BufferedInputStream`等也是装饰器模式。
+  - 在不修改`InputStream` 代码的情况下扩展了它读取文件、增加缓存加快读取速度等功能。
+- 数据源包装、IO流等
+
 
 ### 外观模式
 外观模式-易用的统一入口
@@ -972,18 +1059,15 @@ java的jdbc的驱动程序就是桥接模式的典型应用：
 
 > 思考： 外观模式与代理模式有什么区别，它们的作用是什么？
 
+##### 具体应用
+- Spring的`JdbcTemplate`、`RestTemplate`使用了模板方法模式，也应用了外观模式简化复杂操作。
+
 
 
 ### 组合模式
 组合模式-树形结构的处理
 
 #### 定义
-
-### 装饰模式
-装饰模式-拓展系统功能
-
-#### 定义
-
 
 
 ## 行为性模式
@@ -1035,6 +1119,10 @@ java的jdbc的驱动程序就是桥接模式的典型应用：
 模板方法模式(Template Method Pattern)定义：
 - 定义一个操作中算法的框架，而将一些步骤延迟到子类中。模板方法模式使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。
 
+#### 效果
+
+##### 具体应用
+-  Spring中的`JdbcTemplate`和`RestTemplate`等模板类都是模板方法模式的典型应用。
 
 
 ### 观察者模式
@@ -1196,6 +1284,12 @@ public class Client{
 }
 ```
 
+### 责任链模式
+#### 定义
+
+#### 效果
+##### 具体应用
+- Spring的过滤器链和拦截器链用的就是责任链模式。
 
 ## 资料引用
 [1] [《设计模式 Java版本》](https://www.bookstack.cn/books/design-pattern-java)
