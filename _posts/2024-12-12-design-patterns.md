@@ -1028,7 +1028,6 @@ class client {
   - 含有`-Wrapper`或`-Decorator`后缀的类，比如：`HttpServletRequestWrapper`。
   - `BeanPostProcessor`:对Bean实例进行增强。
   - `HandlerInterceptor`：对拦截器的增强。
-  - 
 - jdk的`InputStream`类下的`FileInputStream`、`BufferedInputStream`等也是装饰器模式。
   - 在不修改`InputStream` 代码的情况下扩展了它读取文件、增加缓存加快读取速度等功能。
 - 数据源包装、IO流等。
