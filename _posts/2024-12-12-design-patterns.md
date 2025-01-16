@@ -1349,6 +1349,154 @@ public class Client{
 4. 系统中有多个对象协作完成某一任务。
 
 ##### 实践：聊天群功能
+现在我们以聊天群来实现中介者模式的应用代码。
+- 以聊天群作为中介者，参与聊天的用户作为同事类
+  - 当其中一个人发送消息时，中介者联动其他同事类收到消息（行为的变化）。
+
+具体代码如下：
+
+```java
+/**
+ * 聊天中介者：抽象类
+ */
+public abstract class ChatMediator {
+    /**
+     * 提供发送消息的方法
+     * @param msg 消息内容
+     * @param colleague 发送消息的同事类
+     */
+    public abstract void sendMessage(String msg, ChatColleague colleague);
+
+    /**
+     * 提供加入聊天的方法（添加同事类）
+     * @param colleague
+     */
+    public abstract void addUser(ChatColleague colleague);
+}
+
+/**
+ * 群聊中介者。具体实现抽象中介者的方法
+ */
+public class GroupChatMediator extends ChatMediator {
+
+    /**
+     * 维护一个所有同事类的列表
+     */
+    protected List<ChatColleague> colleagues = Lists.newArrayListWithCapacity(0);
+
+    @Override
+    public void sendMessage(String msg, ChatColleague colleague) {
+        for (ChatColleague c : colleagues) {
+            if (!Objects.equals(c, colleague)) {
+                c.receiveMessage(msg);
+            }
+        }
+    }
+
+    @Override
+    public synchronized void addUser(ChatColleague colleague) {
+
+        if (!colleagues.contains(colleague)){
+            colleagues.add(colleague);
+            // 添加同事类时，同时设置它的中介者
+            colleague.setMediator(this);
+
+            System.out.println(MessageFormat.format("【{0}】加入群聊。", colleague.getName()));
+        }
+    }
+}
+
+/**
+ * 聊天同事类
+ */
+public abstract class ChatColleague {
+
+    private String name;
+    /**
+     * 维持对中介者的引用
+     */
+    protected ChatMediator mediator;
+
+    public ChatColleague(String name) {
+        this.name = name;
+    }
+
+    public void setMediator(ChatMediator mediator) {
+        this.mediator = mediator;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    /**
+     * 发送信息。通常是调用中介者的操作方法完成
+     * @param msg 消息内容
+     */
+    public abstract void sendMessage(String msg);
+
+    /**
+     * 自用方法
+     * @param msg
+     */
+    public abstract void receiveMessage(String msg);
+}
+
+/**
+ * 聊天用户：实现聊天同事类的具体方法
+ */
+public class ChatUser extends ChatColleague {
+
+    public ChatUser(String name) {
+        super(name);
+    }
+
+    @Override
+    public void sendMessage(String msg) {
+        System.out.println(MessageFormat.format("【{0}】发送消息：{1}", getName(), msg));
+        mediator.sendMessage(msg, this);
+    }
+
+    @Override
+    public void receiveMessage(String msg) {
+        System.out.println(MessageFormat.format("【{0}】收到消息：{1}", getName(), msg));
+    }
+}
+```
+
+客户端调用代码：
+
+```java
+class client{
+    public static void main(String[] args) {
+        // 聊天用户
+		ChatColleague zhangSan = new ChatUser("张三");
+		ChatColleague liSi = new ChatUser("李四");
+		ChatColleague wangWu = new ChatUser("王五");
+
+		// 群聊中介者
+		ChatMediator chatMediator = new GroupChatMediator();
+		// 加入到群聊的用户
+		chatMediator.addUser(liSi);
+		chatMediator.addUser(wangWu);
+        chatMediator.addUser(zhangSan);
+
+		// 有人发了消息
+		zhangSan.sendMessage("你们好，我是张三。经常出现在罗老师案例中的那个张三);
+    }
+}
+```
+
+运行结果：
+
+```
+【李四】加入群聊。
+【王五】加入群聊。
+【张三】加入群聊。
+【张三】发送消息：你们好，我是张三。经常出现在罗老师案例中的那个"张三"。
+【李四】收到消息：你们好，我是张三。经常出现在罗老师案例中的那个"张三"。
+【王五】收到消息：你们好，我是张三。经常出现在罗老师案例中的那个"张三"。
+```
 
 
 ### 命令模式
