@@ -174,13 +174,13 @@ ABSD(Architecture Based Sofware Development)，强调由商业、质量和功能
 - `页号` = `逻辑地址` / `页面大小` （向下取证）;
 - `页内地址` = `逻辑地址` % `页面大小字节`（取余）;
 
+> tips: 
+> - 十进制（decimalism）。
+> - 二进制（binary system），表示方法：101B。
+> - 十六进制（Hexadecimal），表示方法如下：
+>   - `0x` 前缀：这是c语言表示。比如： 0x1B1A。
+>   - `H` 后缀：这是通常描述。比如： 1B1AH。
 
-TIPS：
-- 十进制（decimalism）。
-- 二进制（binary system），表示方法：101B。
-- 十六进制（Hexadecimal），表示方法：1B1AH。
-  - `0x`前缀：这是c语言表示。
-  - `H`后缀：这是通常描述。
 
 
 
