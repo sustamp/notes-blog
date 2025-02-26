@@ -91,6 +91,7 @@ title: "拾遗补漏"
 
 ![UML的关系示意图](https://sustamp.github.io/assets/pictures/UML-Relations.png)
 
+参考资料：<a href="https://www.cnblogs.com/bruce1992/p/18008359" target="_blank">UML类图及各种线代表的关系含义总结</a>
 
 ### 多重度
 软件工程UML中关联的多重度是指一个类的实例能够与另一个类的多少个实例相关联。
