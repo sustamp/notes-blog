@@ -76,7 +76,8 @@ js+css生成文章内容导读目录。自测在网页端，移动端都有不�
 </script>
 ```
 
-> tips:创建一个对象，使用对象的方法。  
+> tips:
+> - 创建一个对象，使用对象的方法。  
 
 `(function(){})()`是**立即执行函数表达式**（Immediately Invoked Function Expression, IIFE），书写格式为：
 
