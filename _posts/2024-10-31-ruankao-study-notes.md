@@ -299,9 +299,9 @@ Cloud Architecture主要解决**拓展性**和**并发**的问题，是最容易
 - NVRAM（非易失性随机存储器）
 - Flash、EPROM（可擦除的随机存储器）、Disk
 
-计算机系统的存储器通常采用分层的层次结构（memory hierachy，内存层次结构）。
+计算机系统的存储器通常采用分层的层次结构（memory hierarchy）。
 
-![内存层次结构](https://sustamp.github.io/assets/pictures/ruankao/memory-hierachy.png)
+![内存层次结构](https://sustamp.github.io/assets/pictures/ruankao/memory-hierarchy.png)
 
 按照与处理器的物理距离可分为4个层次：
 
