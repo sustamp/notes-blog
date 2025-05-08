@@ -23,34 +23,37 @@ title: "设计模式"
 
 **效果(Consequences)** 描述了模式的**优缺点**以及在使用模式时应权衡的问题。
 
-常用设计模式一览表：
+## 设计模式的分类及作用一览表
 
-|类型|模式名称|学习难度|使用频率|
-|-|-|-|-|
-|创建型模式 Creational Pattern|单例模式 Singleton Pattern|★☆☆☆☆|★★★★☆|
-|Creational Pattern|简单工厂模式 Simple Factory Pattern|★★☆☆☆|★★★☆☆|
-|Creational Pattern|工厂方法模式 Factory Method Pattern|★★☆☆☆|★★★★★|
-|Creational Pattern|抽象工厂模式 Abstract Factory Pattern|★★★★☆|★★★★★|
-|Creational Pattern|原型模式 Prototype Pattern|★★★☆☆|★★★☆☆|
-|Creational Pattern|建造者模式 Builder Pattern|★★★★☆|★★☆☆☆|
-|结构型模式 Structural Pattern|	适配器模式 Adapter Pattern|★★☆☆☆|★★★★☆|
-|Structural Pattern|桥接模式 Bridge Pattern|★★★☆☆|★★★☆☆|
-|Structural Pattern|组合模式 Composite Pattern|★★★☆☆|★★★★☆
-|Structural Pattern|装饰模式 Decorator Pattern|★★★☆☆|★★★☆☆|
-|Structural Pattern|外观模式 Façade Pattern|★☆☆☆☆|★★★★★|
-|Structural Pattern|享元模式 Flyweight Pattern|★★★★☆|★☆☆☆☆|
-|Structural Pattern|代理模式 Proxy Pattern|★★★☆☆|★★★★☆|
-|行为型模式 Behavioral Pattern|职责链模式 Chain of Responsibility Pattern|★★★☆☆|★★☆☆☆|
-|Behavioral Pattern|命令模式 Command Pattern|★★★☆☆|★★★★☆|
-|Behavioral Pattern|解释器模式 Interpreter Pattern|★★★★★|★☆☆☆☆|
-|Behavioral Pattern|迭代器模式 Iterator Pattern|★★★☆☆|★★★★★|
-|Behavioral Pattern|中介者模式 Mediator Pattern|★★★☆☆|★★☆☆☆|
-|Behavioral Pattern|备忘录模式 Memento Pattern|★★☆☆☆|★★☆☆☆|
-|Behavioral Pattern|观察者模式 Observer Pattern|★★★☆☆|★★★★★|
-|Behavioral Pattern|状态模式 State Pattern|★★★☆☆|★★★☆☆|
-|Behavioral Pattern|策略模式 Strategy Pattern|★☆☆☆☆|★★★★☆|
-|Behavioral Pattern|模板方法模式 Template Method Pattern|★★☆☆☆|★★★☆☆|
-|Behavioral Pattern|访问者模式 Visitor Pattern|★★★★☆|★☆☆☆☆|
+|类型|模式名称|作用|
+|-|-|-|
+|**创建型模式**|Creational Pattern|**关注对象的创建，为类的实例化提供方法**|
+||单例模式 Singleton Pattern|确保一个类只有一个实例，并提供全局访问点|
+||简单工厂模式 Simple Factory Pattern|提供一个工厂类，由参数决定如何实例化对象|
+||工厂方法模式 Factory Method Pattern|定义创建对象的接口，但由子类决定实例化哪个类|
+||抽象工厂模式 Abstract Factory Pattern|创建相关或依赖对象的家族，而不指定具体类|
+||建造者模式 Builder Pattern|分步骤构建复杂对象，分离构造与表示|
+||原型模式 Prototype Pattern|通过复制现有对象来创建新对象，避免重复初始化|
+|**结构型模式**|Structural Pattern|**关注类或对象的组合方式，优化结构的设计和拓展**|
+||适配器模式 Adapter Pattern|使不兼容的接口能够协同工作|
+||桥接模式 Bridge Pattern|将抽象部分与它的实现部分分离，使它们都可以独立地变化|
+||组合模式 Composite Pattern|将对象组合成树形结构以表示“部分-整体”层次|
+||装饰模式 Decorator Pattern|动态地为对象添加职责，避免子类爆炸|
+||外观模式 Façade Pattern|为复杂子系统提供统一的简化接口|
+||代理模式 Proxy Pattern|为真实象提供一种代理以控制访问（如远程代理、虚拟代理）|
+||享元模式 Flyweight Pattern|★★★★☆|★☆☆☆☆|
+|**行为型模式**|Behavioral Pattern|**关注类或对象之间的通信和职责的分配，优化交互流程和算法**|
+||模板方法模式 Template Method Pattern|定义算法的骨架，将某些步骤延迟到子类实现|
+||中介者模式 Mediator Pattern|协调多个对象之间的交互，避免对象之间的耦合|
+||策略模式 Strategy Pattern|封装算法族，使其可以互相替换|
+||观察者模式 Observer Pattern|定义对象间的一对多依赖，当一个对象状态改变时自动通知依赖者|
+||职责链模式 Chain of Responsibility Pattern|让多个对象有序处理请求，避免耦合|
+||命令模式 Command Pattern|将请求封装为对象，支持撤销、队列等操作|
+||解释器模式 Interpreter Pattern|★★★★★|★☆☆☆☆|
+||迭代器模式 Iterator Pattern|★★★☆☆|★★★★★|
+||备忘录模式 Memento Pattern|★★☆☆☆|★★☆☆☆|
+||状态模式 State Pattern|★★★☆☆|★★★☆☆|
+||访问者模式 Visitor Pattern|★★★★☆|★☆☆☆☆|
 
 ## 面向对象设计原则
 面向对象设计需要解决的核心问题之一是如何同时提高一个软件系统的：
@@ -254,8 +257,6 @@ CRM系统包含很多业务操作窗口，在这些窗口中，当一个按钮(B
 使用LoD进行重构后：
 
 ![LoD原则UML类图](https://sustamp.github.io/assets/pictures/design-patterns/UML-LoD.png)
-
-
 
 
 ## 创建型模式
