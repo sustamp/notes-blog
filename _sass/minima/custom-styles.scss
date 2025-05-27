@@ -127,15 +127,17 @@ strong{
 //     color: #1E1E1E;
 // }
 
-h2{
-    border-bottom:solid 2px;    
-}
-h3{
-    border-bottom:solid 1px;
-}
-h4,h5{
-    border-bottom: solid 0.2px #cccccc;
-}
+// 标题下划线形式
+// h2{
+//     border-bottom:solid 2px;    
+// }
+// h3{
+//     border-bottom:solid 1px;
+// }
+// h4,h5{
+//     border-bottom: solid 0.2px #cccccc;
+// }
+
 .post h2 {
 	background: linear-gradient(to right, #414a86, #bb7676);
     color: white;
@@ -151,6 +153,32 @@ h4,h5{
     font-weight: 600;
 }
 
+// 将H4，H5标题区域做flex布局，元素居中
+h4,h5 {
+    display: flex;
+    align-items: center;
+    gap:0.2em;
+}
+
+//在标题前面画个几何图形
+h4::before, h5::before {
+    content: "";
+    display: inline-block;
+    width: 0.3em;
+    height: 0.5em;
+    background-color: #dedede;
+    margin-right: 0.3em;
+}
+
+// 在标题后面画一条居中的下划线
+h4::after, h5::after {
+    content: "";
+    flex:1;
+    margin-left: 1em;
+    height: 1px;
+    background-color: #ccc;
+}
+
 blockquote{
     font-size: 0.9em;
     color: #009a9a;
@@ -159,6 +187,7 @@ blockquote{
     font-style: normal;
 }
 
+// 斜体字的字体调小一点
 em{
     font-size: 0.9em;
 }
