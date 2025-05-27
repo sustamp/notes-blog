@@ -1559,7 +1559,7 @@ class client{
         chatMediator.addUser(zhangSan);
 
 		// 有人发了消息
-		zhangSan.sendMessage("你们好，我是张三。经常出现在罗老师案例中的那个张三);
+		zhangSan.sendMessage("你们好，我是张三。经常出现在罗老师案例中的那个张三");
     }
 }
 ```
