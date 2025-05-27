@@ -1472,6 +1472,7 @@ public class GroupChatMediator extends ChatMediator {
 
     @Override
     public synchronized void addUser(ChatColleague colleague) {
+        System.out.println(MessageFormat.format("【{0}】发送消息：{1}", colleague.getName(), msg));
 
         if (!colleagues.contains(colleague)){
             colleagues.add(colleague);
@@ -1530,7 +1531,6 @@ public class ChatUser extends ChatColleague {
 
     @Override
     public void sendMessage(String msg) {
-        System.out.println(MessageFormat.format("【{0}】发送消息：{1}", getName(), msg));
         mediator.sendMessage(msg, this);
     }
 
