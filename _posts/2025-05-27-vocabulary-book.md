@@ -4,12 +4,17 @@ title: "词汇本"
 ---
 
 #### vocabulary
+[vəˈkæbjəleri]
 - n. （*某一语言的*）词汇；术语
 
 #### Fault Tolerance
 - n. 容错性
 
 > 记忆方法：错误（被）吞了
+
+##### tolerance
+[tɑːlərəns]
+- n. 容忍；忍耐力；耐药力
 
 #### RAG
 - Retrieval-Augmented Generation
