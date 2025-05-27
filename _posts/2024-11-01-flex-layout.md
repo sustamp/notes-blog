@@ -19,25 +19,6 @@ title: "使用Flexbox进行网页布局"
 
 本文介绍如何使用Flex进行网页布局。
 
-本文目录:
-- [Flex容器](#flex容器)
-- [容器的属性](#容器的属性)
-  - [1.flex-direction](#1flex-direction)
-  - [2.flex-wrap](#2flex-wrap)
-  - [3.flex-flow](#3flex-flow)
-  - [4.justify-content](#4justify-content)
-  - [5.align-items](#5align-items)
-  - [6.align-content](#6align-content)
-- [项目的属性](#项目的属性)
-  - [order](#order)
-  - [flex-grow](#flex-grow)
-  - [flex-shrink](#flex-shrink)
-  - [flex-basis](#flex-basis)
-  - [flex](#flex)
-  - [align-self](#align-self)
-- [资料引用](#资料引用)
-
-
 ## Flex容器
 
 HTML中使用 flexbox 的区域就叫做 **flex 容器**（flex container）。
