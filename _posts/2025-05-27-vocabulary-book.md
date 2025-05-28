@@ -24,7 +24,7 @@ title: "词汇本/术语表"
 > - retry - 尝试
 > - Aug - 八月是丰收的季节 （增强）
 
-#### retrieve
+##### retrieve
 - v. 找回；检索
 
 #### agile
@@ -41,10 +41,10 @@ title: "词汇本/术语表"
 [ɪnˌkæpsjuˈleɪʃ(ə)n]
 - n. 包装；封装
 
-##### inherittance
-- n. 继承
-
 > 记忆方法：`en-`（使处于...境地） + `capsule`（胶囊） => 包装。
+
+##### inheritance
+- n. 继承
 
 ##### polymorphism
 [ˌpɑːlɪˈmɔːrˌfɪzəm]
@@ -71,6 +71,7 @@ title: "词汇本/术语表"
 - adj. 敏捷的；明智的；智能的
 
 #### metric
+[ˈmetrɪk]
 - adj. 格律诗的
 - n. 度量；格律；衡量标准
 
