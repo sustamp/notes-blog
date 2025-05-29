@@ -138,10 +138,6 @@ strong{
 //     border-bottom: solid 0.2px #cccccc;
 // }
 
-h4{
-    border-bottom: 1px solid #ccc;
-}
-
 .post h2 {
 	background: linear-gradient(to right, #414a86, #bb7676);
     color: white;
@@ -175,7 +171,7 @@ h4::before, h5::before {
 }
 
 // 在标题后面画一条居中的下划线
-h5::after {
+h4::after {
     content: "";
     flex:1;
     margin-left: 1em;
