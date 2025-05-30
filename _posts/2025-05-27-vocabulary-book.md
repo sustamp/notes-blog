@@ -189,3 +189,6 @@ title: "词汇本/术语表"
 - n. 持久性；耐用性
 - 事务一经提交不可改变
 
+#### SDK
+- 软件开发工具包（Software Development Kit）
+
