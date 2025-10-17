@@ -217,3 +217,20 @@ title: "词汇本/术语表"
 #### SDK
 - 软件开发工具包（Software Development Kit）
 
+#### 关键成功因素法（CSF）
+
+> Critical Success Factors
+
+##### critical
+- adj.
+- 批判的，挑剔的；
+- 关键的，极其重要的；
+- 临界的
+
+#### 战略集合转换法（SST）
+
+> Strategy Set Transformation
+
+#### 企业系统规划法（BSP）
+
+> Busniess System Planning
